@@ -251,6 +251,7 @@ export default App = (props) => {
     <NavigationContainer ref={navigationRef}>
       <View style={{ width: '100%', height: '100%' }}>
         <RootStack.Navigator headerMode="none">
+          
           <Stack.Screen
             name="Login"
             component={LoginScreen} />
