@@ -9,7 +9,7 @@ import FabManager from './src/fab/FabManager'
 import FabButton from './src/fab/FabButton';
 import FabLightbox from './src/fab/FabLightbox'
 import { useFocusEffect } from '@react-navigation/native';
-
+import {LoginScreen}  from '@container'
 
 function SettingsScreen({ navigation }) {
   useFocusEffect(
@@ -35,21 +35,7 @@ function SettingsScreen({ navigation }) {
   );
 }
 
-function LoginScreen({ navigation }) {
-  return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Login Screen</Text>
-      <Button
-        title="Click to Login "
-        onPress={() => navigation.navigate('Main')}
-      />
-      <Button
-        title="Click to Signup "
-        onPress={() => navigation.navigate('SignUp')}
-      />
-    </View>
-  );
-}
+
 
 function SigupScreen({ navigation }) {
   return (
@@ -265,12 +251,12 @@ export default App = (props) => {
     <NavigationContainer ref={navigationRef}>
       <View style={{ width: '100%', height: '100%' }}>
         <RootStack.Navigator headerMode="none">
-          {/* <Stack.Screen
+          <Stack.Screen
             name="Login"
             component={LoginScreen} />
           <Stack.Screen
             name="SignUp"
-            component={SigupScreen} /> */}
+            component={SigupScreen} />
           <RootStack.Screen name="Main">
             {() => (
               RootTabs()
