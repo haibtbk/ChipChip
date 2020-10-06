@@ -1,8 +1,8 @@
-import React, {Component} from 'react';
-import {TouchableOpacity, Text, View, StyleSheet} from 'react-native';
+import React from 'react';
+import {TouchableOpacity, Text, StyleSheet} from 'react-native';
 import {AppStyles} from '@theme';
 import PropTypes from 'prop-types';
-const  ButtonComponent = (props) => {
+const ButtonComponent = (props) => {
   let {containerStyle, action, title} = props;
 
   return (
@@ -16,9 +16,10 @@ const  ButtonComponent = (props) => {
 
 const styles = StyleSheet.create({
   button: {
+    marginTop: 20,
     marginBottom: 5,
     width: 330,
-    height: 40,
+    height: 50,
     backgroundColor: '#41cd7d',
     borderRadius: 50,
   },
@@ -26,22 +27,23 @@ const styles = StyleSheet.create({
     ...AppStyles.baseText,
     fontSize: 20,
     textAlign: 'center',
-    marginTop: 6,
+    marginTop: 10,
+    color: 'black',
   },
 });
 
 ButtonComponent.defaultProps = {
-    containerStyle: {
-    },
-    title: "",
-    action: ()=> {console.log('click button')}
-}
+  containerStyle: {},
+  title: '',
+  action: () => {
+    console.log('click button');
+  },
+};
 
 ButtonComponent.propTypes = {
-    containerStyle: PropTypes.object,
-    title: PropTypes.string,
-    action: PropTypes.func
-}
+  containerStyle: PropTypes.object,
+  title: PropTypes.string,
+  action: PropTypes.func,
+};
 
-
-export default ButtonComponent
+export default ButtonComponent;
