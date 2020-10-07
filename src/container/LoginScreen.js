@@ -22,35 +22,74 @@ import {CheckBox} from 'native-base';
 
 // export default LoginScreen
 
-import * as React from 'react';
-import {ScrollView, Text, View, StyleSheet, Alert, Image} from 'react-native';
-import {TextInput} from 'react-native-paper';
+import React, {useState} from 'react';
+import {
+  ScrollView,
+  Text,
+  View,
+  StyleSheet,
+  Alert,
+  TouchableOpacity,
+  Linking,
+  TextInput,
+} from 'react-native';
 import {ButtonComponent, CheckBoxComponent} from '@component';
+import Gmail from 'react-native-vector-icons/FontAwesome';
+import EntypoIcon from 'react-native-vector-icons/Entypo';
 
 const LoginScreen = (props) => {
   const {navigation} = props;
+  let [isSecureText, setSecureText] = useState(true);
+
+  const onPressEyePassword = () => {
+    setSecureText(!isSecureText);
+  };
   return (
     <View style={styles.container}>
       <ScrollView style={styles.header}>
         <View style={styles.header}>
-          <Text style={styles.h1}>Đăng Nhập</Text>
+          <Text style={styles.h1}>Sign In</Text>
         </View>
         <View style={styles.body}>
           <TextInput
-            placeholder="Nhập tên đăng nhập"
-            style={styles.textInput}></TextInput>
-          <TextInput
-            placeholder="Nhập Mật Khẩu"
-            style={styles.textInput}></TextInput>
+            underlineColorAndroid="transparent"
+            placeholder="Nhập email đăng nhập"
+            placeholderTextColor="#6d6dab"
+            keyboardType="email-address"
+            style={styles.textInput1}></TextInput>
+          <View style={styles.stylePassword}>
+            <TextInput
+              underlineColorAndroid="transparent"
+              placeholder="Nhập mật khẩu"
+              placeholderTextColor="#6d6dab"
+              keyboardType="default"
+              secureTextEntry={isSecureText}
+              style={styles.textInput2}></TextInput>
+            <TouchableOpacity
+              style={styles.marginEye}
+              onPress={() => onPressEyePassword()}>
+              {isSecureText ? (
+                <EntypoIcon name="eye" size={20} color="#6d6dab"></EntypoIcon>
+              ) : (
+                <EntypoIcon
+                  name="eye-with-line"
+                  size={20}
+                  color="#6d6dab"></EntypoIcon>
+              )}
+            </TouchableOpacity>
+          </View>
+
           <View style={styles.remember}>
             <View style={styles.CheckBox}>
-              <View style={styles.marginCheckBox}><CheckBoxComponent
-                // imageChecked={require('@images/checkboxTrue.png')}
-                // imageUnChecked={require('@images/checkboxFalse.png')}
-                isCheck={false}
-                status={(isChecked) => {
-                  console.log(isChecked);
-                }}></CheckBoxComponent></View>
+              <View style={styles.marginCheckBox}>
+                <CheckBoxComponent
+                  // imageChecked={require('@images/checkboxTrue.png')}
+                  // imageUnChecked={require('@images/checkboxFalse.png')}
+                  isCheck={false}
+                  status={(isChecked) => {
+                    console.log(isChecked);
+                  }}></CheckBoxComponent>
+              </View>
               <Text style={styles.text1}>Remember Me</Text>
             </View>
             <View>
@@ -61,8 +100,8 @@ const LoginScreen = (props) => {
           </View>
 
           <ButtonComponent
-            containerStyle={{width: '90%'}}
-            title="Đăng Nhập"
+            containerStyle={{width: '100%'}}
+            title="Sign In"
             action={() => navigation.navigate('Main')}
           />
           <View style={styles.navHorizontalLine}>
@@ -73,18 +112,29 @@ const LoginScreen = (props) => {
             <View style={styles.horizontalLine}></View>
           </View>
           <View style={styles.navFbGmailTwiter}>
-            <Image
-              onPress={() => Alert.alert('FaceBook')}
-              style={styles.imageFbGmailTwiter}
-              source={require('@images/imageFB.png')}></Image>
-            <Image
-              onPress={() => Alert.alert('Twiter')}
-              style={styles.imageFbGmailTwiter}
-              source={require('@images/imageTwiter.png')}></Image>
-            <Image
-              onPress={() => Alert.alert('Gmail')}
-              style={styles.imageFbGmailTwiter}
-              source={require('@images/imageGmail.png')}></Image>
+            <EntypoIcon
+              name="facebook-with-circle"
+              color="white"
+              size={35}
+              onPress={() =>
+                Linking.openURL('https://www.facebook.com/')
+              }></EntypoIcon>
+            <Gmail
+              name="google-plus-official"
+              size={35}
+              color="white"
+              onPress={() =>
+                Linking.openURL(
+                  'https://accounts.google.com/signin/v2/identifier?continue=https%3A%2F%2Fmail.google.com%2Fmail%2F&service=mail&sacu=1&rip=1&flowName=GlifWebSignIn&flowEntry=ServiceLogin',
+                )
+              }></Gmail>
+            <EntypoIcon
+              name="twitter-with-circle"
+              color="white"
+              size={35}
+              onPress={() =>
+                Linking.openURL('https://twitter.com/login')
+              }></EntypoIcon>
           </View>
           <View style={styles.CreateAccount}>
             <Text style={styles.text3}>Don't have an account?</Text>
@@ -102,20 +152,33 @@ const LoginScreen = (props) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    padding: 20,
+    backgroundColor: '#16182b',
   },
-  header: {backgroundColor: '#202442'},
+  header: {},
   body: {
     justifyContent: 'center',
     marginHorizontal: 16,
     alignItems: 'center',
   },
-  textInput: {
-    backgroundColor: '#666699',
-    width: '90%',
-    borderColor: 'black',
-    borderWidth: 1,
+  textInput1: {
+    backgroundColor: '#242846',
+    width: '100%',
+    height: 45,
     marginTop: 30,
-    borderRadius: 5,
+    borderRadius: 20,
+    paddingLeft: 25,
+  },
+  textInput2: {
+    backgroundColor: '#242846',
+    width: '100%',
+    height: 45,
+    borderRadius: 20,
+    paddingLeft: 25,
+  },
+  stylePassword: {
+    flexDirection: 'row',
+    marginTop: 30,
   },
   h1: {
     marginTop: 20,
@@ -123,13 +186,6 @@ const styles = StyleSheet.create({
     color: 'white',
     textAlign: 'left',
     marginLeft: 20,
-  },
-  button: {
-    marginBottom: 5,
-    width: 330,
-    height: 40,
-    backgroundColor: '#41cd7d',
-    borderRadius: 50,
   },
   textLogin: {
     fontSize: 20,
@@ -141,29 +197,35 @@ const styles = StyleSheet.create({
     resizeMode: 'cover',
     justifyContent: 'center',
   },
+  imageEye: {
+    width: 20,
+    height: 20,
+    borderRadius: 10,
+  },
+  marginEye: {
+    position: 'absolute',
+    top: 15,
+    right: 10,
+  },
   remember: {
+    width: '100%',
     flexDirection: 'row',
     alignSelf: 'flex-start',
-    marginTop: 10,
-    marginBottom: 10,
+    marginTop: '6%',
+    marginBottom: '6%',
+    justifyContent: 'space-between',
   },
   text1: {
-    marginLeft: 3,
-    marginTop: 0,
-    color: '#666699',
+    color: '#6d6dab',
   },
   text2: {
-    marginLeft: 100,
-    marginTop: 11,
-    color: '#666699',
+    color: '#6d6dab',
   },
   CheckBox: {
-    marginTop: 11,
     flexDirection: 'row',
-    marginLeft: 20,
   },
   marginCheckBox: {
-    marginTop: 3,
+    marginRight: 5,
   },
   navHorizontalLine: {
     flexDirection: 'row',
@@ -171,35 +233,29 @@ const styles = StyleSheet.create({
   },
   horizontalLine: {
     width: 160,
-    height: 0.2,
-    backgroundColor: '#666699',
-    marginTop: 21,
+    height: 1,
+    backgroundColor: '#6d6dab',
+    marginTop: 20,
   },
   textOr: {
     marginLeft: 2,
     marginRight: 2,
     fontSize: 15,
-    color: '#666699',
+    color: '#6d6dab',
     marginTop: 7,
   },
   navFbGmailTwiter: {
+    width: '40%',
     marginTop: 30,
     flexDirection: 'row',
-    alignSelf: 'center',
-  },
-  imageFbGmailTwiter: {
-    marginLeft: 15,
-    marginRight: 15,
-    width: 30,
-    height: 30,
-    borderRadius: 15,
+    justifyContent: 'space-between',
   },
   CreateAccount: {
     flexDirection: 'row',
     marginTop: 120,
   },
   text3: {
-    color: '#666699',
+    color: '#6d6dab',
     marginRight: 10,
   },
   text4: {

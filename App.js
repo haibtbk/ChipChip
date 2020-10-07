@@ -9,7 +9,7 @@ import FabManager from './src/fab/FabManager';
 import FabButton from './src/fab/FabButton';
 import FabLightbox from './src/fab/FabLightbox';
 import {useFocusEffect} from '@react-navigation/native';
-import {LoginScreen} from '@container';
+import {LoginScreen, HomeScreen} from '@container';
 import {SignUpScreen} from './src/container';
 
 function SettingsScreen({navigation}) {
@@ -54,34 +54,34 @@ function ProfileScreen({navigation}) {
   );
 }
 
-function HomeScreen({navigation}) {
-  useFocusEffect(
-    React.useCallback(() => {
-      // Do something when the screen is focused
-      setTimeout(() => {
-        FabManager.show();
-      }, 100);
-      return () => {
-        // Do something when the screen is unfocused
-        // Useful for cleanup functions
-        FabManager.hide();
-      };
-    }, []),
-  );
-  return (
-    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-      <Text>Home Screen</Text>
-      <Button
-        title="Go to Details"
-        onPress={() => navigation.navigate('Details')}
-      />
-      <Button
-        title="Show Dialog"
-        onPress={() => navigation.navigate('Dialog')}
-      />
-    </View>
-  );
-}
+// function HomeScreen({navigation}) {
+//   useFocusEffect(
+//     React.useCallback(() => {
+//       // Do something when the screen is focused
+//       setTimeout(() => {
+//         FabManager.show();
+//       }, 100);
+//       return () => {
+//         // Do something when the screen is unfocused
+//         // Useful for cleanup functions
+//         FabManager.hide();
+//       };
+//     }, []),
+//   );
+//   return (
+//     <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+//       <Text>Home Screen</Text>
+//       <Button
+//         title="Go to Details"
+//         onPress={() => navigation.navigate('Details')}
+//       />
+//       <Button
+//         title="Show Dialog"
+//         onPress={() => navigation.navigate('Dialog')}
+//       />
+//     </View>
+//   );
+// }
 
 function DetailsScreen({navigation}) {
   return (
