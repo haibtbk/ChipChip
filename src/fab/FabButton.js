@@ -6,8 +6,6 @@ import _ from 'lodash';
 import * as Animatable from 'react-native-animatable';
 import {View} from 'react-native';
 
-
-
 const FabButton = React.forwardRef((props, ref) => {
   const [visible, setVisible] = React.useState(false);
   const [showLightbox, setShowLightbox] = React.useState(false);
