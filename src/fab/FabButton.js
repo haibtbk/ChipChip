@@ -32,6 +32,9 @@ const FabButton = React.forwardRef((props, ref) => {
     }
   };
 
+
+
+  
   const reset = () => {
     setShowLightbox(false);
     rotatingView.current.transitionTo({rotate: '0deg'});
