@@ -32,8 +32,6 @@ const styles = StyleSheet.create({
   imageButtonStyle: {
     width: 13,
     height: 13,
-
-    
   },
   styleMargin: {
     
