@@ -1,3 +1,4 @@
 import ButtonComponent from './ButtonComponent';
 import CheckBoxComponent from './CheckBoxComponent';
-export {ButtonComponent, CheckBoxComponent};
+import ButtonIconComponent from './ButtonIconComponent';
+export {ButtonComponent, CheckBoxComponent, ButtonIconComponent};
