@@ -29,13 +29,11 @@ import {
   View,
   StyleSheet,
   Alert,
-  TouchableOpacity,
   Linking,
   TextInput,
 } from 'react-native';
-import {ButtonComponent, CheckBoxComponent} from '@component';
-import Gmail from 'react-native-vector-icons/FontAwesome';
-import EntypoIcon from 'react-native-vector-icons/Entypo';
+import {ButtonComponent, CheckBoxComponent, ButtonIconComponent} from '@component';
+
 
 const LoginScreen = (props) => {
   const {navigation} = props;
@@ -55,6 +53,7 @@ const LoginScreen = (props) => {
             underlineColorAndroid="transparent"
             placeholder="Nhập email đăng nhập"
             placeholderTextColor="#6d6dab"
+            color="#6d6dab"
             keyboardType="email-address"
             style={styles.textInput1}></TextInput>
           <View style={styles.stylePassword}>
@@ -62,21 +61,18 @@ const LoginScreen = (props) => {
               underlineColorAndroid="transparent"
               placeholder="Nhập mật khẩu"
               placeholderTextColor="#6d6dab"
+              color="#6d6dab"
               keyboardType="default"
               secureTextEntry={isSecureText}
               style={styles.textInput2}></TextInput>
-            <TouchableOpacity
-              style={styles.marginEye}
-              onPress={() => onPressEyePassword()}>
-              {isSecureText ? (
-                <EntypoIcon name="eye" size={20} color="#6d6dab"></EntypoIcon>
-              ) : (
-                <EntypoIcon
-                  name="eye-with-line"
-                  size={20}
-                  color="#6d6dab"></EntypoIcon>
-              )}
-            </TouchableOpacity>
+            <ButtonIconComponent containerStyle={styles.marginEye}
+              action={() => onPressEyePassword()}
+              name={isSecureText ? 'eye-with-line' : 'eye'}
+              size={20}
+              color='#6d6dab'
+              ></ButtonIconComponent>
+
+            
           </View>
 
           <View style={styles.remember}>
@@ -112,29 +108,30 @@ const LoginScreen = (props) => {
             <View style={styles.horizontalLine}></View>
           </View>
           <View style={styles.navFbGmailTwiter}>
-            <EntypoIcon
+            <ButtonIconComponent
               name="facebook-with-circle"
               color="white"
               size={35}
-              onPress={() =>
+              action={() =>
                 Linking.openURL('https://www.facebook.com/')
-              }></EntypoIcon>
-            <Gmail
+              }></ButtonIconComponent>
+            <ButtonIconComponent
               name="google-plus-official"
+              source='FontAwesome'
               size={35}
               color="white"
-              onPress={() =>
+              action={() =>
                 Linking.openURL(
                   'https://accounts.google.com/signin/v2/identifier?continue=https%3A%2F%2Fmail.google.com%2Fmail%2F&service=mail&sacu=1&rip=1&flowName=GlifWebSignIn&flowEntry=ServiceLogin',
                 )
-              }></Gmail>
-            <EntypoIcon
+              }></ButtonIconComponent>
+            <ButtonIconComponent
               name="twitter-with-circle"
               color="white"
               size={35}
-              onPress={() =>
+              action={() =>
                 Linking.openURL('https://twitter.com/login')
-              }></EntypoIcon>
+              }></ButtonIconComponent>
           </View>
           <View style={styles.CreateAccount}>
             <Text style={styles.text3}>Don't have an account?</Text>
@@ -204,7 +201,7 @@ const styles = StyleSheet.create({
   },
   marginEye: {
     position: 'absolute',
-    top: 15,
+    top: 13,
     right: 10,
   },
   remember: {

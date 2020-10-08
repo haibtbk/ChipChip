@@ -19,7 +19,7 @@ export default {
     paddingLarge: 32,
     paddingMedium: 24,
     padding: 16,
-    paddingXXMedium: 12,
+    paddingXMedium: 12,
     paddingSmall: 8,
     paddingXSmall: 4,
 
