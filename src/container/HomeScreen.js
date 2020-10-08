@@ -47,6 +47,9 @@ const HomeScreen = (props) => {
         <View>
           <Text> Các mặt hàng bán chạy nhất</Text>
         </View>
+
+
+
         <View style={styles.nav2}>
           <View style={styles.nav3}>
             <Image
@@ -110,7 +113,7 @@ const styles = StyleSheet.create({
     top: 15,
   },
   image: {
-    width: 50,
-    height: 50,
+    width: "20%",
+    height: 70,
   },
 });
