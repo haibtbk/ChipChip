@@ -5,7 +5,7 @@
 /* global __DEV__ */
 
 const ApiConfig = {
-    UAT_API_BASE_URL: 'https://test.haven.fruitful.io/',
+    UAT_API_BASE_URL: 'http://localhost:3000/',
     // PRO_API_BASE_URL: 'https://test.haven.fruitful.io/',
     PRO_API_BASE_URL: 'https://test.haven.fruitful.io/',
 }

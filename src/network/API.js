@@ -13,13 +13,14 @@ const API = ApiManager.getInstance(Env.test) // Init with test env by default.
 /**
  * Auth API
  */
-API.login = (username, password) => {
+API.login = (params) => {
+    const { username, password } = params
     const data = {
-        username: username,
-        password: password
+        username,
+        password
     };
 
-    return API.instance.post(Endpoint.LOGIN, data);
+    return API.instance.get(Endpoint.LOGIN, data);
 };
 
 

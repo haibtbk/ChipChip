@@ -1,28 +1,5 @@
-import {CheckBox} from 'native-base';
-// import * as React from 'react';
-// import { Component, useRef } from 'react'
-// import { Text, View, Button } from 'react-native';
-// const LoginScreen = (props) => {
 
-//     const { navigation } = props
-//     return (
-//         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-//             <Text>Login Screen</Text>
-//             <Button
-//                 title="Click to Login "
-//                 onPress={() => navigation.navigate('Main')}
-//             />
-//             <Button
-//                 title="Click to Signup "
-//                 onPress={() => navigation.navigate('SignUp')}
-//             />
-//         </View>
-//     );
-// }
-
-// export default LoginScreen
-
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import {
   ScrollView,
   Text,
@@ -31,17 +8,30 @@ import {
   Alert,
   Linking,
   TextInput,
-} from 'react-native';
-import {ButtonComponent, CheckBoxComponent, ButtonIconComponent} from '@component';
 
+} from 'react-native';
+import { ButtonComponent, CheckBoxComponent, ButtonIconComponent } from '@component';
+import { API } from "@network"
 
 const LoginScreen = (props) => {
-  const {navigation} = props;
+  const { navigation } = props;
   let [isSecureText, setSecureText] = useState(true);
 
   const onPressEyePassword = () => {
     setSecureText(!isSecureText);
   };
+
+  const doLogin = () => {
+    const params = {
+      username: "hai",
+      password: "bui"
+    }
+    API.login(params)
+      .then((res) => {
+        navigation.navigate('Main')
+      })
+      .catch((err) => Alert.alert('Error', err.message ?? "Login fail!!!"))
+  }
   return (
     <View style={styles.container}>
       <ScrollView style={styles.header}>
@@ -70,9 +60,9 @@ const LoginScreen = (props) => {
               name={isSecureText ? 'eye-with-line' : 'eye'}
               size={20}
               color='#6d6dab'
-              ></ButtonIconComponent>
+            ></ButtonIconComponent>
 
-            
+
           </View>
 
           <View style={styles.remember}>
@@ -96,9 +86,9 @@ const LoginScreen = (props) => {
           </View>
 
           <ButtonComponent
-            containerStyle={{width: '100%'}}
+            containerStyle={{ width: '100%' }}
             title="Sign In"
-            action={() => navigation.navigate('Main')}
+            action={() => doLogin()}
           />
           <View style={styles.navHorizontalLine}>
             <View style={styles.horizontalLine}></View>

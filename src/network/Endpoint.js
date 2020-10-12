@@ -1,5 +1,5 @@
 const Endpoint = {
-    LOGIN: "/login",
+    LOGIN: "login",
 }
 
 export default Endpoint
