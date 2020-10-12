@@ -1,27 +1,3 @@
-import {CheckBox} from 'native-base';
-// import * as React from 'react';
-// import { Component, useRef } from 'react'
-// import { Text, View, Button } from 'react-native';
-// const LoginScreen = (props) => {
-
-//     const { navigation } = props
-//     return (
-//         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-//             <Text>Login Screen</Text>
-//             <Button
-//                 title="Click to Login "
-//                 onPress={() => navigation.navigate('Main')}
-//             />
-//             <Button
-//                 title="Click to Signup "
-//                 onPress={() => navigation.navigate('SignUp')}
-//             />
-//         </View>
-//     );
-// }
-
-// export default LoginScreen
-
 import React, {useState} from 'react';
 import {
   ScrollView,
@@ -32,8 +8,12 @@ import {
   Linking,
   TextInput,
 } from 'react-native';
-import {ButtonComponent, CheckBoxComponent, ButtonIconComponent} from '@component';
-
+import {
+  ButtonComponent,
+  CheckBoxComponent,
+  ButtonIconComponent,
+} from '@component';
+import {API} from '@network';
 
 const LoginScreen = (props) => {
   const {navigation} = props;
@@ -41,6 +21,18 @@ const LoginScreen = (props) => {
 
   const onPressEyePassword = () => {
     setSecureText(!isSecureText);
+  };
+
+  const doLogin = () => {
+    const params = {
+      username: 'hai',
+      password: 'bui',
+    };
+    API.login(params)
+      .then((res) => {
+        navigation.navigate('Main');
+      })
+      .catch((err) => Alert.alert('Error', err.message ?? 'Login fail!!!'));
   };
   return (
     <View style={styles.container}>
@@ -65,81 +57,77 @@ const LoginScreen = (props) => {
               keyboardType="default"
               secureTextEntry={isSecureText}
               style={styles.textInput2}></TextInput>
-            <ButtonIconComponent containerStyle={styles.marginEye}
+            <ButtonIconComponent
+              containerStyle={styles.marginEye}
               action={() => onPressEyePassword()}
               name={isSecureText ? 'eye-with-line' : 'eye'}
               size={20}
-              color='#6d6dab'
-              ></ButtonIconComponent>
-
-            
-          </View>
-
-          <View style={styles.remember}>
-            <View style={styles.CheckBox}>
-              <View style={styles.marginCheckBox}>
-                <CheckBoxComponent
-                  // imageChecked={require('@images/checkboxTrue.png')}
-                  // imageUnChecked={require('@images/checkboxFalse.png')}
-                  isCheck={false}
-                  status={(isChecked) => {
-                    console.log(isChecked);
-                  }}></CheckBoxComponent>
+              color="#6d6dab"></ButtonIconComponent>
+            <View style={styles.remember}>
+              <View style={styles.CheckBox}>
+                <View style={styles.marginCheckBox}>
+                  <CheckBoxComponent
+                    // imageChecked={require('@images/checkboxTrue.png')}
+                    // imageUnChecked={require('@images/checkboxFalse.png')}
+                    isCheck={false}
+                    status={(isChecked) => {
+                      console.log(isChecked);
+                    }}></CheckBoxComponent>
+                </View>
+                <Text style={styles.text1}>Remember Me</Text>
               </View>
-              <Text style={styles.text1}>Remember Me</Text>
+              <View>
+                <Text style={styles.text2} onPress={() => Alert.alert('ok')}>
+                  Forget PassWord ?
+                </Text>
+              </View>
             </View>
-            <View>
-              <Text style={styles.text2} onPress={() => Alert.alert('ok')}>
-                Forget PassWord ?
+            <ButtonComponent
+              containerStyle={{width: '100%'}}
+              title="Sign In"
+              action={() => doLogin()}
+            />
+            <View style={styles.navHorizontalLine}>
+              <View style={styles.horizontalLine}></View>
+              <View>
+                <Text style={styles.textOr}>Or</Text>
+              </View>
+              <View style={styles.horizontalLine}></View>
+            </View>
+            <View style={styles.navFbGmailTwiter}>
+              <ButtonIconComponent
+                name="facebook-with-circle"
+                color="white"
+                size={35}
+                action={() =>
+                  Linking.openURL('https://www.facebook.com/')
+                }></ButtonIconComponent>
+              <ButtonIconComponent
+                name="google-plus-official"
+                source="FontAwesome"
+                size={35}
+                color="white"
+                action={() =>
+                  Linking.openURL(
+                    'https://accounts.google.com/signin/v2/identifier?continue=https%3A%2F%2Fmail.google.com%2Fmail%2F&service=mail&sacu=1&rip=1&flowName=GlifWebSignIn&flowEntry=ServiceLogin',
+                  )
+                }></ButtonIconComponent>
+              <ButtonIconComponent
+                name="twitter-with-circle"
+                color="white"
+                size={35}
+                action={() =>
+                  Linking.openURL('https://twitter.com/login')
+                }></ButtonIconComponent>
+            </View>
+            <View style={styles.CreateAccount}>
+              <Text style={styles.text3}>Don't have an account?</Text>
+              <Text
+                style={styles.text4}
+                onPress={() => navigation.navigate('SignUp')}>
+                Create new one
               </Text>
             </View>
-          </View>
-
-          <ButtonComponent
-            containerStyle={{width: '100%'}}
-            title="Sign In"
-            action={() => navigation.navigate('Main')}
-          />
-          <View style={styles.navHorizontalLine}>
-            <View style={styles.horizontalLine}></View>
-            <View>
-              <Text style={styles.textOr}>Or</Text>
-            </View>
-            <View style={styles.horizontalLine}></View>
-          </View>
-          <View style={styles.navFbGmailTwiter}>
-            <ButtonIconComponent
-              name="facebook-with-circle"
-              color="white"
-              size={35}
-              action={() =>
-                Linking.openURL('https://www.facebook.com/')
-              }></ButtonIconComponent>
-            <ButtonIconComponent
-              name="google-plus-official"
-              source='FontAwesome'
-              size={35}
-              color="white"
-              action={() =>
-                Linking.openURL(
-                  'https://accounts.google.com/signin/v2/identifier?continue=https%3A%2F%2Fmail.google.com%2Fmail%2F&service=mail&sacu=1&rip=1&flowName=GlifWebSignIn&flowEntry=ServiceLogin',
-                )
-              }></ButtonIconComponent>
-            <ButtonIconComponent
-              name="twitter-with-circle"
-              color="white"
-              size={35}
-              action={() =>
-                Linking.openURL('https://twitter.com/login')
-              }></ButtonIconComponent>
-          </View>
-          <View style={styles.CreateAccount}>
-            <Text style={styles.text3}>Don't have an account?</Text>
-            <Text
-              style={styles.text4}
-              onPress={() => navigation.navigate('SignUp')}>
-              Create new one
-            </Text>
           </View>
         </View>
       </ScrollView>

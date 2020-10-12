@@ -32,12 +32,14 @@ const HomeScreen = (props) => {
   );
 
   return (
-    <ImageBackground style={styles.imageBackground} source={ require('@images/background/backgroundSale.jpg')}>
+    <ImageBackground
+      source={require('@images/backgroundSale.jpg')}
+      style={styles.imageBackground}>
       <ScrollView style={styles.container}>
         <View style={styles.nav1}>
           <TextInput
             placeholder="Nhập sản phẩm bạn muốn tìm"
-            placeholderTextColor="black"
+            placeholderTextColor="#6d6dab"
             style={styles.textInput}></TextInput>
           <ButtonIconComponent
             name="search1"
@@ -86,7 +88,7 @@ export default HomeScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 10,
+    padding: 20,
   },
   textInput: {
     height: 50,
@@ -125,7 +127,7 @@ const styles = StyleSheet.create({
     top: 15,
   },
   image: {
-    width: AppSizes.screen.width * 43/100,
-    height: AppSizes.screen.width /100*40,
+    width: (AppSizes.screen.width * 43) / 100,
+    height: (AppSizes.screen.width / 100) * 40,
   },
 });
