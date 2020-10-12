@@ -4,6 +4,8 @@ import Entypo from 'react-native-vector-icons/Entypo';
 import Feather from 'react-native-vector-icons/Feather';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import Foundation from 'react-native-vector-icons/Foundation';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 const ButtonIconComponent = (props) => {
   const {action, name, size, source, containerStyle, color} = props;
@@ -17,6 +19,10 @@ const ButtonIconComponent = (props) => {
         return AntDesign;
       case 'FontAwesome':
         return FontAwesome;
+      case 'Foundation':
+        return Foundation;
+      case 'MaterialIcons':
+        return MaterialIcons;
       default:
         return Entypo;
     }

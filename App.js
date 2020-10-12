@@ -1,87 +1,26 @@
 import * as React from 'react';
 import {Component, useRef} from 'react';
-import {Text, View, Button} from 'react-native';
+import {Text, View, Button, Image} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import EntypoIcon from 'react-native-vector-icons/FontAwesome';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import {createStackNavigator} from '@react-navigation/stack';
 import FabManager from './src/fab/FabManager';
 import FabButton from './src/fab/FabButton';
 import FabLightbox from './src/fab/FabLightbox';
 import {useFocusEffect} from '@react-navigation/native';
-import {LoginScreen, HomeScreen} from '@container';
+import {
+  LoginScreen,
+  HomeScreen,
+  SalesScreen,
+  NotificationsScreen,
+  SettingsScreen,
+  ProfileScreen,
+  DialogScreen
+} from '@container';
 import {SignUpScreen} from './src/container';
-
-function SettingsScreen({navigation}) {
-  useFocusEffect(
-    React.useCallback(() => {
-      // Do something when the screen is focused
-      setTimeout(() => {
-        FabManager.show();
-      }, 100);
-
-      return () => {
-        // Do something when the screen is unfocused
-        // Useful for cleanup functions
-        FabManager.hide();
-      };
-    }, []),
-  );
-  return (
-    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-      <Text>Settings Screen</Text>
-      <Button
-        title="Go to Profile"
-        onPress={() => navigation.navigate('Profile')}
-      />
-    </View>
-  );
-}
-
-function ProfileScreen({navigation}) {
-  return (
-    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-      <Text>Profile Screen</Text>
-      <Button
-        title="Go to Settings"
-        onPress={() => navigation.navigate('Settings')}
-      />
-      <Button
-        title="Show Dialog"
-        onPress={() => navigation.navigate('Dialog')}
-      />
-    </View>
-  );
-}
-
-// function HomeScreen({navigation}) {
-//   useFocusEffect(
-//     React.useCallback(() => {
-//       // Do something when the screen is focused
-//       setTimeout(() => {
-//         FabManager.show();
-//       }, 100);
-//       return () => {
-//         // Do something when the screen is unfocused
-//         // Useful for cleanup functions
-//         FabManager.hide();
-//       };
-//     }, []),
-//   );
-//   return (
-//     <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-//       <Text>Home Screen</Text>
-//       <Button
-//         title="Go to Details"
-//         onPress={() => navigation.navigate('Details')}
-//       />
-//       <Button
-//         title="Show Dialog"
-//         onPress={() => navigation.navigate('Dialog')}
-//       />
-//     </View>
-//   );
-// }
+import {ButtonIconComponent} from '@component';
 
 function DetailsScreen({navigation}) {
   return (
@@ -99,53 +38,6 @@ function DetailsScreen({navigation}) {
   );
 }
 
-function Notifications({navigation}) {
-  useFocusEffect(
-    React.useCallback(() => {
-      // Do something when the screen is focused
-      setTimeout(() => {
-        FabManager.show();
-      }, 100);
-      return () => {
-        // Do something when the screen is unfocused
-        // Useful for cleanup functions
-        FabManager.hide();
-      };
-    }, []),
-  );
-  return (
-    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-      <Text>Notifications!</Text>
-    </View>
-  );
-}
-
-function DialogScreen({navigation}) {
-  return (
-    <View
-      style={{
-        width: '100%',
-        height: '100%',
-        alignItems: 'center',
-        justifyContent: 'center',
-        position: 'absolute',
-        backgroundColor: 'rgba(0, 0, 0, 0.3)',
-      }}>
-      <View
-        style={{
-          width: '80%',
-          height: '60%',
-          alignItems: 'center',
-          justifyContent: 'center',
-          backgroundColor: 'white',
-          borderRadius: 12,
-        }}>
-        <Text style={{fontSize: 30}}>This is a modal!</Text>
-        <Button onPress={() => navigation.goBack()} title="Dismiss" />
-      </View>
-    </View>
-  );
-}
 
 const Tab = createBottomTabNavigator();
 const HomeStack = createStackNavigator();
@@ -162,11 +54,14 @@ function RootTabs() {
         activeTintColor: '#e91e63',
       }}>
       <Tab.Screen
-        name="Home"
+        name="Hàng cận date"
         options={{
-          tabBarLabel: 'Home',
-          tabBarIcon: ({color, size}) => (
-            <EntypoIcon name="home" color={color} size={size} />
+          tabBarLabel: 'Hàng cận date',
+          tabBarIcon: () => (
+            <Image
+              source={require('@images/sale/hot.png')}
+              style={{width: 45, height: 40}}
+            />
           ),
         }}>
         {() => (
@@ -178,10 +73,23 @@ function RootTabs() {
       </Tab.Screen>
 
       <Tab.Screen
-        name="Notifications"
-        component={Notifications}
+        name="Hàng giảm giá "
+        component={SalesScreen}
         options={{
-          tabBarLabel: 'Notification',
+          tabBarLabel: 'Hàng Giảm Giá',
+          tabBarIcon: () => (
+            <Image
+              source={require('@images/sale/sale.png')}
+              style={{width: 45, height: 37}}
+            />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Notifications"
+        component={NotificationsScreen}
+        options={{
+          tabBarLabel: 'Thông báo',
           tabBarIcon: ({color, size}) => (
             <EntypoIcon name="bell" color={color} size={size} />
           ),
@@ -190,9 +98,9 @@ function RootTabs() {
       <Tab.Screen
         name="Setting"
         options={{
-          tabBarLabel: 'Setting',
+          tabBarLabel: 'Account',
           tabBarIcon: ({color, size}) => (
-            <EntypoIcon name="cog" color={color} size={size} />
+            <MaterialIcons name ='account-box' color={color} size={size}></MaterialIcons>
           ),
         }}>
         {() => (
