@@ -9,6 +9,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import FabManager from './src/fab/FabManager';
 import FabButton from './src/fab/FabButton';
 import FabLightbox from './src/fab/FabLightbox';
+import Foundation from 'react-native-vector-icons/Foundation';
 import {useFocusEffect} from '@react-navigation/native';
 import {
   LoginScreen,
@@ -78,11 +79,8 @@ function RootTabs() {
         component={SalesScreen}
         options={{
           tabBarLabel: 'Hàng Giảm Giá',
-          tabBarIcon: () => (
-            <Image
-              source={require('@images/sale/sale.png')}
-              style={{width: 45, height: 37}}
-            />
+          tabBarIcon: ({color, size}) => (
+           <Foundation name="burst-sale" size={40} color={color}></Foundation>
           ),
         }}
       />
