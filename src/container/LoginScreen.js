@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import {
   ScrollView,
   Text,
@@ -7,16 +7,16 @@ import {
   Alert,
   Linking,
   TextInput,
+  SafeAreaView,
+
 } from 'react-native';
-import {
-  ButtonComponent,
-  CheckBoxComponent,
-  ButtonIconComponent,
-} from '@component';
-import {API} from '@network';
+import { AppStyles, AppSizes, AppColors } from '@theme'
+import { ButtonComponent, CheckBoxComponent, ButtonIconComponent } from '@component';
+import { API } from "@network"
+import Localization from '@localization'
 
 const LoginScreen = (props) => {
-  const {navigation} = props;
+  const { navigation } = props;
   let [isSecureText, setSecureText] = useState(true);
 
   const onPressEyePassword = () => {
@@ -35,116 +35,113 @@ const LoginScreen = (props) => {
       .catch((err) => Alert.alert('Error', err.message ?? 'Login fail!!!'));
   };
   return (
-    <View style={styles.container}>
-      <ScrollView style={styles.header}>
-        <View style={styles.header}>
-          <Text style={styles.h1}>Sign In</Text>
-        </View>
-        <View style={styles.body}>
+    <ScrollView style={{ height: '100%', backgroundColor: '#16182b', }} contentContainerStyle={{ height: '100%' }}>
+      <View style={styles.container}>
+        <Text style={styles.h1}>{Localization.t('signin')}</Text>
+        <TextInput
+          underlineColorAndroid="transparent"
+          placeholder="Nhập email đăng nhập"
+          placeholderTextColor="#6d6dab"
+          color="#6d6dab"
+          keyboardType="email-address"
+          style={styles.textInput1}></TextInput>
+        <View style={styles.stylePassword}>
           <TextInput
             underlineColorAndroid="transparent"
-            placeholder="Nhập email đăng nhập"
+            placeholder="Nhập mật khẩu"
             placeholderTextColor="#6d6dab"
             color="#6d6dab"
-            keyboardType="email-address"
-            style={styles.textInput1}></TextInput>
-          <View style={styles.stylePassword}>
-            <TextInput
-              underlineColorAndroid="transparent"
-              placeholder="Nhập mật khẩu"
-              placeholderTextColor="#6d6dab"
-              color="#6d6dab"
-              keyboardType="default"
-              secureTextEntry={isSecureText}
-              style={styles.textInput2}></TextInput>
-            <ButtonIconComponent
-              containerStyle={styles.marginEye}
-              action={() => onPressEyePassword()}
-              name={isSecureText ? 'eye-with-line' : 'eye'}
-              size={20}
-              color="#6d6dab"></ButtonIconComponent>
-            <View style={styles.remember}>
-              <View style={styles.CheckBox}>
-                <View style={styles.marginCheckBox}>
-                  <CheckBoxComponent
-                    // imageChecked={require('@images/checkboxTrue.png')}
-                    // imageUnChecked={require('@images/checkboxFalse.png')}
-                    isCheck={false}
-                    status={(isChecked) => {
-                      console.log(isChecked);
-                    }}></CheckBoxComponent>
-                </View>
-                <Text style={styles.text1}>Remember Me</Text>
-              </View>
-              <View>
-                <Text style={styles.text2} onPress={() => Alert.alert('ok')}>
-                  Forget PassWord ?
-                </Text>
-              </View>
-            </View>
-            <ButtonComponent
-              containerStyle={{width: '100%'}}
-              title="Sign In"
-              action={() => doLogin()}
-            />
-            <View style={styles.navHorizontalLine}>
-              <View style={styles.horizontalLine}></View>
-              <View>
-                <Text style={styles.textOr}>Or</Text>
-              </View>
-              <View style={styles.horizontalLine}></View>
-            </View>
-            <View style={styles.navFbGmailTwiter}>
-              <ButtonIconComponent
-                name="facebook-with-circle"
-                color="white"
-                size={35}
-                action={() =>
-                  Linking.openURL('https://www.facebook.com/')
-                }></ButtonIconComponent>
-              <ButtonIconComponent
-                name="google-plus-official"
-                source="FontAwesome"
-                size={35}
-                color="white"
-                action={() =>
-                  Linking.openURL(
-                    'https://accounts.google.com/signin/v2/identifier?continue=https%3A%2F%2Fmail.google.com%2Fmail%2F&service=mail&sacu=1&rip=1&flowName=GlifWebSignIn&flowEntry=ServiceLogin',
-                  )
-                }></ButtonIconComponent>
-              <ButtonIconComponent
-                name="twitter-with-circle"
-                color="white"
-                size={35}
-                action={() =>
-                  Linking.openURL('https://twitter.com/login')
-                }></ButtonIconComponent>
-            </View>
-            <View style={styles.CreateAccount}>
-              <Text style={styles.text3}>Don't have an account?</Text>
-              <Text
-                style={styles.text4}
-                onPress={() => navigation.navigate('SignUp')}>
-                Create new one
-              </Text>
-            </View>
-          </View>
+            keyboardType="default"
+            secureTextEntry={isSecureText}
+            style={styles.textInput2}></TextInput>
+          <ButtonIconComponent
+            containerStyle={styles.marginEye}
+            action={() => onPressEyePassword()}
+            name={!isSecureText ? 'eye-with-line' : 'eye'}
+            size={20}
+            color="#6d6dab"></ButtonIconComponent>
         </View>
-      </ScrollView>
-    </View>
+        <View style={styles.remember}>
+          <View style={styles.CheckBox}>
+            <CheckBoxComponent
+              isCheck={false}
+              status={(isChecked) => {
+                console.log(isChecked);
+              }} />
+            <Text style={styles.text1}>{Localization.t('rememberMe')}</Text>
+          </View>
+          <Text style={styles.text2} onPress={() => Alert.alert('ok')}>
+            {Localization.t('forgotPassword')}
+          </Text>
+        </View>
+
+        <ButtonComponent
+          containerStyle={{ width: '100%' }}
+          title={Localization.t('signin')}
+          action={() => doLogin()}
+        />
+        <View style={styles.navHorizontalLine}>
+          <View style={styles.horizontalLine}></View>
+          <View>
+            <Text style={styles.textOr}>Or</Text>
+          </View>
+          <View style={styles.horizontalLine}></View>
+        </View>
+        <View style={styles.navFbGmailTwiter}>
+          <ButtonIconComponent
+            name="facebook-with-circle"
+            color="white"
+            size={35}
+            action={() =>
+              Linking.openURL('https://www.facebook.com/')
+            } />
+
+
+          <ButtonIconComponent
+            name="google-plus-official"
+            source='FontAwesome'
+            size={35}
+            color="white"
+            action={() =>
+              Linking.openURL(
+                'https://accounts.google.com/signin/v2/identifier?continue=https%3A%2F%2Fmail.google.com%2Fmail%2F&service=mail&sacu=1&rip=1&flowName=GlifWebSignIn&flowEntry=ServiceLogin',
+              )
+            } />
+          <ButtonIconComponent
+            name="twitter-with-circle"
+            color="white"
+            size={35}
+            action={() =>
+              Linking.openURL('https://twitter.com/login')
+            } />
+        </View>
+        <View style={styles.CreateAccount}>
+          <Text style={styles.text3}>{Localization.t('dontHaveAccount')}</Text>
+          <Text
+            style={styles.text4}
+            onPress={() => navigation.navigate('SignUp')}>
+            {Localization.t('createNewAccount')}
+          </Text>
+        </View>
+      </View>
+
+    </ScrollView >
   );
 };
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    padding: 20,
-    backgroundColor: '#16182b',
+    alignItems: 'center',
+    height: '100%',
+    justifyContent: 'center',
+    padding: AppSizes.paddingMedium,
   },
-  header: {},
+  header: { backgroundColor: 'red', justifyContent: 'center' },
   body: {
     justifyContent: 'center',
     marginHorizontal: 16,
     alignItems: 'center',
+    flex: 1,
+    backgroundColor: 'red'
   },
   textInput1: {
     backgroundColor: '#242846',
@@ -199,14 +196,18 @@ const styles = StyleSheet.create({
     marginTop: '6%',
     marginBottom: '6%',
     justifyContent: 'space-between',
+    alignItems: 'center',
+    padding: AppSizes.paddingXSmall,
   },
   text1: {
+    marginLeft: AppSizes.paddingSmall,
     color: '#6d6dab',
   },
   text2: {
     color: '#6d6dab',
   },
   CheckBox: {
+    alignItems: 'center',
     flexDirection: 'row',
   },
   marginCheckBox: {

@@ -33,7 +33,7 @@ const HomeScreen = (props) => {
 
   return (
     <ImageBackground
-      source={require('@images/backgroundSale.jpg')}
+      source={require('@images/background/backgroundSale.jpg')}
       style={styles.imageBackground}>
       <ScrollView style={styles.container}>
         <View style={styles.nav1}>

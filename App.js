@@ -17,14 +17,15 @@ import {
   NotificationsScreen,
   SettingsScreen,
   ProfileScreen,
-  DialogScreen
+  DialogScreen,
+  SignUpScreen
 } from '@container';
-import {SignUpScreen} from './src/container';
-import {ButtonIconComponent} from '@component';
+import * as RNLocalize from 'react-native-localize';
+import Localization from '@localization'
 
-function DetailsScreen({navigation}) {
+function DetailsScreen({ navigation }) {
   return (
-    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <Text>Details Screen</Text>
       <Button
         title="Go to Details... again"
@@ -122,9 +123,9 @@ const RootDialog = () => {
       options={{
         headerShown: false,
         animationEnabled: true,
-        cardStyle: {backgroundColor: 'rgba(0, 0, 0, 0.15)'},
+        cardStyle: { backgroundColor: 'rgba(0, 0, 0, 0.15)' },
         cardOverlayEnabled: true,
-        cardStyleInterpolator: ({current: {progress}}) => {
+        cardStyleInterpolator: ({ current: { progress } }) => {
           return {
             cardStyle: {
               opacity: progress.interpolate({
@@ -149,7 +150,14 @@ const RootDialog = () => {
 const navigationRef = React.createRef();
 
 export default App = (props) => {
+  Localization.setI18nConfig();
   const fabRef = React.useRef();
+  
+  const handleLocalizationChange = () => {
+    Localization.setI18nConfig();
+    this.forceUpdate();
+  };
+
   React.useEffect(() => {
     FabManager.register(fabRef.current);
     return () => {
@@ -157,9 +165,16 @@ export default App = (props) => {
     };
   }, [fabRef]);
 
+  React.useEffect(() => {
+    RNLocalize.addEventListener('change', handleLocalizationChange);
+    return (() => {
+      RNLocalize.removeEventListener('change', handleLocalizationChange);
+    })
+  }, []);
+
   return (
     <NavigationContainer ref={navigationRef}>
-      <View style={{width: '100%', height: '100%'}}>
+      <View style={{ width: '100%', height: '100%' }}>
         <RootStack.Navigator headerMode="none">
           <Stack.Screen name="Login" component={LoginScreen} />
           <Stack.Screen name="SignUp" component={SignUpScreen} />
@@ -171,9 +186,9 @@ export default App = (props) => {
             options={{
               headerShown: false,
               animationEnabled: true,
-              cardStyle: {backgroundColor: 'rgba(0, 0, 0, 0.15)'},
+              cardStyle: { backgroundColor: 'rgba(0, 0, 0, 0.15)' },
               cardOverlayEnabled: true,
-              cardStyleInterpolator: ({current: {progress}}) => {
+              cardStyleInterpolator: ({ current: { progress } }) => {
                 return {
                   cardStyle: {
                     opacity: progress.interpolate({
