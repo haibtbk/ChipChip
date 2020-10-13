@@ -23,6 +23,10 @@ API.login = (params) => {
     return API.instance.get(Endpoint.LOGIN, data);
 };
 
+API.getProductList = (params)=>{
+    return API.instance.get(Endpoint.products, params);
+}
+
 
 /* Export Component ==================================================================== */
 export default API;

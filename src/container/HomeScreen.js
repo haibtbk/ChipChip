@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   ScrollView,
   Text,
@@ -14,9 +14,12 @@ import FabManager from '@fab/FabManager';
 import {useFocusEffect} from '@react-navigation/native';
 import {ButtonIconComponent} from '@component';
 import {AppSizes} from '@theme';
-import flatListData from '../data/flatListData';
+import { getProduct } from 'react-native-device-info';
+import {API} from '@network'
 
 const HomeScreen = (props) => {
+
+  const [products, setProducts] = useState([])
   useFocusEffect(
     React.useCallback(() => {
       // Do something when the screen is focused
@@ -30,6 +33,20 @@ const HomeScreen = (props) => {
       };
     }, []),
   );
+
+  const getProductList = () =>{
+    const prams={}
+    API.getProductList(prams)
+    .then(res => {
+      const products = res?.data?.responseData??[]
+      setProducts(products)
+    })
+    .catch(err => console.log(err))
+  }
+
+  useEffect(() => {
+    getProductList()
+  }, [])
 
   return (
     <ImageBackground
@@ -60,7 +77,7 @@ const HomeScreen = (props) => {
           <FlatList
             horizontal={false}
             numColumns={2}
-            data={flatListData}
+            data={products}
             keyExtractor={(item) => item.id}
             renderItem={({item}) => {
               return (
@@ -127,7 +144,7 @@ const styles = StyleSheet.create({
     top: 15,
   },
   image: {
-    width: (AppSizes.screen.width * 43) / 100,
+    width: (AppSizes.screen.width * 41.05) / 100,
     height: (AppSizes.screen.width / 100) * 40,
   },
 });
