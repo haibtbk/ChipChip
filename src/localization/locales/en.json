@@ -3,5 +3,9 @@
     "forgotPassword": "Quên mật khẩu ?",
     "rememberMe": "Nhớ tên đăng nhập",
     "dontHaveAccount": "Không có tài khoản?",
-    "createNewAccount": "Tạo tài khoản mới"
+    "createNewAccount": "Tạo tài khoản mới",
+    "productType": "Loại sản phẩm",
+    "price": "Giá tiền",
+    "expiryDate": " Hạn dùng",
+    "provider": "Nhà cung cấp"
 }

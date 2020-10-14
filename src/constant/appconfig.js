@@ -7,6 +7,7 @@
 const ApiConfig = {
     // UAT_API_BASE_URL: 'http://localhost:3000/',
     UAT_API_BASE_URL: 'http://10.0.2.2:3000/',
+    // UAT_API_BASE_URL: 'http://192.168.56.1:3000/',
     // PRO_API_BASE_URL: 'https://test.haven.fruitful.io/',
     PRO_API_BASE_URL: 'https://test.haven.fruitful.io/',
 }
