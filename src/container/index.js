@@ -6,6 +6,7 @@ import NotificationsScreen from './NotificationsScreen';
 import SettingsScreen from './SettingsScreen';
 import ProfileScreen from './component/ProfileScreen';
 import DialogScreen from './component/DialogScreen';
+import FilterScreen from './component/FilterScreen';
 export {
   LoginScreen,
   SignUpScreen,
@@ -15,4 +16,5 @@ export {
   SettingsScreen,
   ProfileScreen,
   DialogScreen,
+  FilterScreen
 };
