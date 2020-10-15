@@ -113,7 +113,7 @@ function RootTabs() {
         }}>
         {() => (
           <SettingsStack.Navigator>
-            <SettingsStack.Screen name="Settings" component={SettingsScreen} />
+            <SettingsStack.Screen name="Account" component={SettingsScreen} />
             <SettingsStack.Screen name="Profile" component={ProfileScreen} />
           </SettingsStack.Navigator>
         )}

@@ -17,7 +17,7 @@ const NavBar = (props) => {
           name="arrow-back"
           color="white"
           size={20}
-          onPress={() => navigation.pop()}></MaterialIcons>
+          onPress={() => navigation.pop(1)}></MaterialIcons>
       </View>
     </View>
   );

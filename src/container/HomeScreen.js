@@ -11,6 +11,7 @@ import {
   FlatList,
   ActivityIndicator,
   Icon,
+  Alert,
 } from 'react-native';
 import FabManager from '@fab/FabManager';
 import {useFocusEffect} from '@react-navigation/native';
@@ -22,9 +23,11 @@ import {createStackNavigator} from '@react-navigation/stack';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Localization from '@localization';
+import {FilterType} from '@constant';
 
 const HomeScreen = (props) => {
   const [products, setProducts] = useState([]);
+  const [search, setSearch] = useState('');
   useFocusEffect(
     React.useCallback(() => {
       // Do something when the screen is focused
@@ -62,7 +65,10 @@ const HomeScreen = (props) => {
         <TouchableOpacity
           style={styles.navFilter}
           onPress={() =>
-            navigation.navigate('Filter', {title: 'Lọc theo sản phẩm'})
+            navigation.navigate('Filter', {
+              title: 'Lọc theo sản phẩm',
+              type: FilterType.product,
+            })
           }>
           <Text
             style={[AppStyles.baseText, {textAlign: 'center', color: 'white'}]}>
@@ -110,7 +116,10 @@ const HomeScreen = (props) => {
         <TouchableOpacity
           style={styles.navFilter}
           onPress={() =>
-            navigation.navigate('Filter', {title: 'Lọc theo nhà cung cấp'})
+            navigation.navigate('Filter', {
+              title: 'Lọc theo nhà cung cấp',
+              type: FilterType.provider,
+            })
           }>
           <Text
             style={[AppStyles.baseText, {textAlign: 'center', color: 'white'}]}>
@@ -126,14 +135,17 @@ const HomeScreen = (props) => {
       <ScrollView style={styles.container}>
         <View style={styles.nav1}>
           <TextInput
+            type="text"
             placeholder="Nhập sản phẩm bạn muốn tìm"
             placeholderTextColor="#6d6dab"
-            style={styles.textInput}></TextInput>
+            style={styles.textInput}
+            onChange={(e) => setSearch(e.target.value)}></TextInput>
           <ButtonIconComponent
             name="search1"
             source="AntDesign"
             size={20}
             containerStyle={styles.searchBar}></ButtonIconComponent>
+            <ButtonIconComponent name=""></ButtonIconComponent>
         </View>
         <View style={styles.nav1}>
           <ButtonIconComponent
@@ -141,7 +153,9 @@ const HomeScreen = (props) => {
             source="FontAwesome"
             size={20}
             color={'red'}></ButtonIconComponent>
-          <Text styel={AppStyles.baseText}> Các mặt hàng bán chạy nhất</Text>
+          <Text styel={AppStyles.baseText}>
+            Các mặt hàng bán chạy nhất {search}
+          </Text>
         </View>
 
         <View style={styles.nav2}>
@@ -243,4 +257,5 @@ const styles = StyleSheet.create({
     top: 6,
     marginLeft: 5,
   },
+
 });
