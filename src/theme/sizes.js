@@ -29,8 +29,8 @@ export default {
     marginMedium: 24,
     margin: 16,
     marginXMedium: 12,
+    marginSmall: 8,
     marginXSmall: 4,
-    marginSml: 8,
 
     fontXSmall: 10,
     fontSmall: 12,

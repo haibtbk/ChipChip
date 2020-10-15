@@ -9,254 +9,150 @@
         },
         "token": "abcdefghijklmnopqrstuv"
     },
-    "products":  {
-      "responseData": [
+    "product_types": [
+      {
+        "id": 1,
+        "name": "Áo"
+      },
+      {
+        "id": 2,
+        "name": "Quần"
+      },
+      {
+        "id": 3,
+        "name": "Mũ"
+      },
+      {
+        "id": 4,
+        "name": "Dép"
+      }
+    ],
+
+    "providers": [
+      {
+        "id":1,
+        "name": "Cookie"
+      },
+      {
+        "id":2,
+        "name": "Yamato"
+      },
+      {
+        "id": 3,
+        "name": "Sang"
+      },
+      {
+        "id": 4,
+        "name": "Roma"
+      }
+    ],
+
+
+    "products":   [
         {
-          "id": "1",
-          "name": "Áo Phông Halo",
-          "source":
-            "https://vn-test-11.slatic.net/p/de2324c6849a8953b8c7f3de15175df8.jpg_720x720q80.jpg_.webp",
-          "price": 99000000
+          "id" : 1,
+          "name" : "Áo CLB Chelsea",
+          "price": 1000,
+          "source": "https://kiwisport.vn/wp-content/uploads/2020/07/ao-bong-da-clb-chelsea-mau-xanh-mua-2020-2021.jpg",
+          "product_type_id": 1,
+          "provider": "Cung Đình",
+          "amount": 100,
+          "user_id": 1,
+          "buyed_amount": 99,
+          "create_date": "1/1/2020",
+          "delete_at": ""
+          
         },
         {
-          "id": "2",
-          "name": "Áo Phông sieu nhan",
-          "source":
-            "https://hd1.hotdeal.vn/images/uploads/2015/10/17/190325/190325-do-be-trai-body-%20%286%29.jpg",
-          "price": 99000000
+          "id": 2,
+          "name": "Áo CLB Italia",
+          "price": 1000000,
+          "source": "https://photo-1-baomoi.zadn.vn/w1000_r1/2019_10_07_106_32469654/fcd6e0c35683bfdde692.jpg",
+          "product_type_id": 1,
+          "provider": "Cung Đình",
+          "amount": 100,
+          "user_id": 1,
+          "buyed_amount": 99,
+          "create_date": "1/1/2020",
+          "delete_at": ""
         },
         {
-          "id": "3",
-          "name": "Áo Phông 3",
-          "source":
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRwvgGyNDnA9xELW30ZDO1_4T6jIpIxxzM-JA&usqp=CAU",
-          "price": 99000000
+          "id": 3,
+          "name": "Áo CLB Italia",
+          "price": 1000000,
+          "source": "https://photo-1-baomoi.zadn.vn/w1000_r1/2019_10_07_106_32469654/fcd6e0c35683bfdde692.jpg",
+          "product_type_id": 1,
+          "provider": "Cung Đình",
+          "amount": 100,
+          "user_id": 1,
+          "buyed_amount": 99,
+          "create_date": "1/1/2020",
+          "delete_at": ""
         },
         {
-          "id": "4",
-          "name": "Áo Phông 4",
-          "source":
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcT5a953CxGN8-Ejs9wNo8JRrJQNr3FNs8M2og&usqp=CAU",
-          "price": 99000000
+          "id": 4,
+          "name": "Áo CLB Italia",
+          "price": 1000000,
+          "source": "https://photo-1-baomoi.zadn.vn/w1000_r1/2019_10_07_106_32469654/fcd6e0c35683bfdde692.jpg",
+          "product_type_id": 1,
+          "provider": "Cung Đình",
+          "amount": 100,
+          "user_id": 1,
+          "buyed_amount": 99,
+          "create_date": "1/1/2020",
+          "delete_at": ""
         },
         {
-          "id": "5",
-          "name": "Áo Phông 5",
-          "source": "https://dongphuckn.com/wp-content/uploads/2018/12/nhung-hinh-anh-ao-lop-dep-7.jpg",
-          "price": 99000000
+          "id": 5,
+          "name": "Áo CLB Italia",
+          "price": 1000000,
+          "source": "https://photo-1-baomoi.zadn.vn/w1000_r1/2019_10_07_106_32469654/fcd6e0c35683bfdde692.jpg",
+          "product_type_id": 1,
+          "provider": "Cung Đình",
+          "amount": 100,
+          "user_id": 1,
+          "buyed_amount": 99,
+          "create_date": "1/1/2020",
+          "delete_at": ""
         },
         {
-          "id": "6",
-          "name": "Áo Phông 6",
-          "source":
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcToDq6hQrpmqCZBiC1OlNdjHUrjdWtMPEw8xi79olCYBjMb8WEutJIFXQBV33wGpxbSA6ncYIY&usqp=CAc",
-          "price": 99000000
+          "id": 6,
+          "name": "Áo CLB Italia",
+          "price": 1000000,
+          "source": "https://photo-1-baomoi.zadn.vn/w1000_r1/2019_10_07_106_32469654/fcd6e0c35683bfdde692.jpg",
+          "product_type_id": 1,
+          "provider": "Cung Đình",
+          "amount": 100,
+          "user_id": 1,
+          "buyed_amount": 99,
+          "create_date": "1/1/2020",
+          "delete_at": ""
         },
         {
-          "id": "1",
-          "name": "Áo Phông Halo",
-          "source":
-            "https://vn-test-11.slatic.net/p/de2324c6849a8953b8c7f3de15175df8.jpg_720x720q80.jpg_.webp",
-          "price": 99000000
+          "id": 7,
+          "name": "Áo CLB Italia",
+          "price": 1000000,
+          "source": "https://photo-1-baomoi.zadn.vn/w1000_r1/2019_10_07_106_32469654/fcd6e0c35683bfdde692.jpg",
+          "product_type_id": 1,
+          "provider": "Cung Đình",
+          "amount": 100,
+          "user_id": 1,
+          "buyed_amount": 99,
+          "create_date": "1/1/2020",
+          "delete_at": ""
         },
         {
-          "id": "2",
-          "name": "Áo Phông sieu nhan",
-          "source":
-            "https://hd1.hotdeal.vn/images/uploads/2015/10/17/190325/190325-do-be-trai-body-%20%286%29.jpg",
-          "price": 99000000
-        },
-        {
-          "id": "3",
-          "name": "Áo Phông 3",
-          "source":
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRwvgGyNDnA9xELW30ZDO1_4T6jIpIxxzM-JA&usqp=CAU",
-          "price": 99000000
-        },
-        {
-          "id": "4",
-          "name": "Áo Phông 4",
-          "source":
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcT5a953CxGN8-Ejs9wNo8JRrJQNr3FNs8M2og&usqp=CAU",
-          "price": 99000000
-        },
-        {
-          "id": "5",
-          "name": "Áo Phông 5",
-          "source": "https://dongphuckn.com/wp-content/uploads/2018/12/nhung-hinh-anh-ao-lop-dep-7.jpg",
-          "price": 99000000
-        },
-        {
-          "id": "6",
-          "name": "Áo Phông 6",
-          "source":
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcToDq6hQrpmqCZBiC1OlNdjHUrjdWtMPEw8xi79olCYBjMb8WEutJIFXQBV33wGpxbSA6ncYIY&usqp=CAc",
-          "price": 99000000
-        },
-        {
-          "id": "1",
-          "name": "Áo Phông Halo",
-          "source":
-            "https://vn-test-11.slatic.net/p/de2324c6849a8953b8c7f3de15175df8.jpg_720x720q80.jpg_.webp",
-          "price": 99000000
-        },
-        {
-          "id": "2",
-          "name": "Áo Phông sieu nhan",
-          "source":
-            "https://hd1.hotdeal.vn/images/uploads/2015/10/17/190325/190325-do-be-trai-body-%20%286%29.jpg",
-          "price": 99000000
-        },
-        {
-          "id": "3",
-          "name": "Áo Phông 3",
-          "source":
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRwvgGyNDnA9xELW30ZDO1_4T6jIpIxxzM-JA&usqp=CAU",
-          "price": 99000000
-        },
-        {
-          "id": "4",
-          "name": "Áo Phông 4",
-          "source":
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcT5a953CxGN8-Ejs9wNo8JRrJQNr3FNs8M2og&usqp=CAU",
-          "price": 99000000
-        },
-        {
-          "id": "5",
-          "name": "Áo Phông 5",
-          "source": "https://dongphuckn.com/wp-content/uploads/2018/12/nhung-hinh-anh-ao-lop-dep-7.jpg",
-          "price": 99000000
-        },
-        {
-          "id": "6",
-          "name": "Áo Phông 6",
-          "source":
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcToDq6hQrpmqCZBiC1OlNdjHUrjdWtMPEw8xi79olCYBjMb8WEutJIFXQBV33wGpxbSA6ncYIY&usqp=CAc",
-          "price": 99000000
-        },
-        {
-          "id": "1",
-          "name": "Áo Phông Halo",
-          "source":
-            "https://vn-test-11.slatic.net/p/de2324c6849a8953b8c7f3de15175df8.jpg_720x720q80.jpg_.webp",
-          "price": 99000000
-        },
-        {
-          "id": "2",
-          "name": "Áo Phông sieu nhan",
-          "source":
-            "https://hd1.hotdeal.vn/images/uploads/2015/10/17/190325/190325-do-be-trai-body-%20%286%29.jpg",
-          "price": 99000000
-        },
-        {
-          "id": "3",
-          "name": "Áo Phông 3",
-          "source":
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRwvgGyNDnA9xELW30ZDO1_4T6jIpIxxzM-JA&usqp=CAU",
-          "price": 99000000
-        },
-        {
-          "id": "4",
-          "name": "Áo Phông 4",
-          "source":
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcT5a953CxGN8-Ejs9wNo8JRrJQNr3FNs8M2og&usqp=CAU",
-          "price": 99000000
-        },
-        {
-          "id": "5",
-          "name": "Áo Phông 5",
-          "source": "https://dongphuckn.com/wp-content/uploads/2018/12/nhung-hinh-anh-ao-lop-dep-7.jpg",
-          "price": 99000000
-        },
-        {
-          "id": "6",
-          "name": "Áo Phông 6",
-          "source":
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcToDq6hQrpmqCZBiC1OlNdjHUrjdWtMPEw8xi79olCYBjMb8WEutJIFXQBV33wGpxbSA6ncYIY&usqp=CAc",
-          "price": 99000000
-        },
-        {
-          "id": "1",
-          "name": "Áo Phông Halo",
-          "source":
-            "https://vn-test-11.slatic.net/p/de2324c6849a8953b8c7f3de15175df8.jpg_720x720q80.jpg_.webp",
-          "price": 99000000
-        },
-        {
-          "id": "2",
-          "name": "Áo Phông sieu nhan",
-          "source":
-            "https://hd1.hotdeal.vn/images/uploads/2015/10/17/190325/190325-do-be-trai-body-%20%286%29.jpg",
-          "price": 99000000
-        },
-        {
-          "id": "3",
-          "name": "Áo Phông 3",
-          "source":
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRwvgGyNDnA9xELW30ZDO1_4T6jIpIxxzM-JA&usqp=CAU",
-          "price": 99000000
-        },
-        {
-          "id": "4",
-          "name": "Áo Phông 4",
-          "source":
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcT5a953CxGN8-Ejs9wNo8JRrJQNr3FNs8M2og&usqp=CAU",
-          "price": 99000000
-        },
-        {
-          "id": "5",
-          "name": "Áo Phông 5",
-          "source": "https://dongphuckn.com/wp-content/uploads/2018/12/nhung-hinh-anh-ao-lop-dep-7.jpg",
-          "price": 99000000
-        },
-        {
-          "id": "6",
-          "name": "Áo Phông 6",
-          "source":
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcToDq6hQrpmqCZBiC1OlNdjHUrjdWtMPEw8xi79olCYBjMb8WEutJIFXQBV33wGpxbSA6ncYIY&usqp=CAc",
-          "price": 99000000
-        },
-        {
-          "id": "1",
-          "name": "Áo Phông Halo",
-          "source":
-            "https://vn-test-11.slatic.net/p/de2324c6849a8953b8c7f3de15175df8.jpg_720x720q80.jpg_.webp",
-          "price": 99000000
-        },
-        {
-          "id": "2",
-          "name": "Áo Phông sieu nhan",
-          "source":
-            "https://hd1.hotdeal.vn/images/uploads/2015/10/17/190325/190325-do-be-trai-body-%20%286%29.jpg",
-          "price": 99000000
-        },
-        {
-          "id": "3",
-          "name": "Áo Phông 3",
-          "source":
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRwvgGyNDnA9xELW30ZDO1_4T6jIpIxxzM-JA&usqp=CAU",
-          "price": 99000000
-        },
-        {
-          "id": "4",
-          "name": "Áo Phông 4",
-          "source":
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcT5a953CxGN8-Ejs9wNo8JRrJQNr3FNs8M2og&usqp=CAU",
-          "price": 99000000
-        },
-        {
-          "id": "5",
-          "name": "Áo Phông 5",
-          "source": "https://dongphuckn.com/wp-content/uploads/2018/12/nhung-hinh-anh-ao-lop-dep-7.jpg",
-          "price": 99000000
-        },
-        {
-          "id": "6",
-          "name": "Áo Phông 6",
-          "source":
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcToDq6hQrpmqCZBiC1OlNdjHUrjdWtMPEw8xi79olCYBjMb8WEutJIFXQBV33wGpxbSA6ncYIY&usqp=CAc",
-          "price": 99000000
+          "id": 8,
+          "name": "Áo CLB Italia",
+          "price": 1000000,
+          "source": "https://photo-1-baomoi.zadn.vn/w1000_r1/2019_10_07_106_32469654/fcd6e0c35683bfdde692.jpg",
+          "product_type_id": 1,
+          "provider": "Cung Đình",
+          "amount": 100,
+          "user_id": 1,
+          "buyed_amount": 99,
+          "create_date": "1/1/2020",
+          "delete_at": ""
         }
-      ]
-    }
+      ]   
 }

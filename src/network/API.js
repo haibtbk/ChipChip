@@ -27,6 +27,16 @@ API.getProductList = (params)=>{
     return API.instance.get(Endpoint.products, params);
 }
 
+API.getProductTypes =() =>{
+    return API.instance.get(Endpoint.productTypes);
+} 
+
+API.getPrices = () => {
+    return API.instance.get(Endpoint.price);
+}
+API.getProviders = () => {
+    return API.instance.get(Endpoint.providers);
+}
 
 /* Export Component ==================================================================== */
 export default API;

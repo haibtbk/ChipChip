@@ -9,17 +9,25 @@ import {
   ImageBackground,
   Image,
   FlatList,
+  ActivityIndicator,
+  Icon,
+  Alert,
 } from 'react-native';
 import FabManager from '@fab/FabManager';
 import {useFocusEffect} from '@react-navigation/native';
 import {ButtonIconComponent} from '@component';
-import {AppSizes} from '@theme';
-import { getProduct } from 'react-native-device-info';
-import {API} from '@network'
+import {AppSizes, AppStyles} from '@theme';
+import {getProduct} from 'react-native-device-info';
+import {API} from '@network';
+import {createStackNavigator} from '@react-navigation/stack';
+import {TouchableOpacity} from 'react-native-gesture-handler';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import Localization from '@localization';
+import {FilterType} from '@constant';
 
 const HomeScreen = (props) => {
-
-  const [products, setProducts] = useState([])
+  const [products, setProducts] = useState([]);
+  const [search, setSearch] = useState('');
   useFocusEffect(
     React.useCallback(() => {
       // Do something when the screen is focused
@@ -34,35 +42,110 @@ const HomeScreen = (props) => {
     }, []),
   );
 
-  const getProductList = () =>{
-    const prams={}
+  const getProductList = () => {
+    const prams = {};
     API.getProductList(prams)
-    .then(res => {
-      const products = res?.data?.responseData??[]
-      setProducts(products)
-    })
-    .catch(err => console.log(err))
-  }
+      .then((res) => {
+        const products = res?.data ?? [];
+        setProducts(products);
+      })
+      .catch((err) => console.log(err));
+  };
 
   useEffect(() => {
-    getProductList()
-  }, [])
-
+    getProductList();
+    console.log(props);
+  }, []);
+  const {navigation} = props;
   return (
     <ImageBackground
       source={require('@images/background/backgroundSale.jpg')}
       style={styles.imageBackground}>
+      <View style={styles.filter}>
+        <TouchableOpacity
+          style={styles.navFilter}
+          onPress={() =>
+            navigation.navigate('Filter', {
+              title: 'Lọc theo sản phẩm',
+              type: FilterType.product,
+            })
+          }>
+          <Text
+            style={[AppStyles.baseText, {textAlign: 'center', color: 'white'}]}>
+            {Localization.t('productType')}
+          </Text>
+          <FontAwesome
+            name="filter"
+            size={20}
+            style={styles.iconFilter}
+            color={'white'}></FontAwesome>
+        </TouchableOpacity>
+        <View style={styles.divider}></View>
+        <TouchableOpacity
+          style={styles.navFilter}
+          onPress={() =>
+            navigation.navigate('Filter', {title: 'Lọc theo giá tiền'})
+          }>
+          <Text
+            style={[AppStyles.baseText, {textAlign: 'center', color: 'white'}]}>
+            {Localization.t('price')}
+          </Text>
+          <FontAwesome
+            name="filter"
+            size={20}
+            style={styles.iconFilter}
+            color={'white'}></FontAwesome>
+        </TouchableOpacity>
+        <View style={styles.divider}></View>
+        <TouchableOpacity
+          style={styles.navFilter}
+          onPress={() =>
+            navigation.navigate('Filter', {title: 'Lọc theo Hạn sử dụng'})
+          }>
+          <Text
+            style={[AppStyles.baseText, {textAlign: 'center', color: 'white'}]}>
+            {Localization.t('expiryDate')}
+          </Text>
+          <FontAwesome
+            name="filter"
+            size={20}
+            style={styles.iconFilter}
+            color={'white'}></FontAwesome>
+        </TouchableOpacity>
+        <View style={styles.divider}></View>
+        <TouchableOpacity
+          style={styles.navFilter}
+          onPress={() =>
+            navigation.navigate('Filter', {
+              title: 'Lọc theo nhà cung cấp',
+              type: FilterType.provider,
+            })
+          }>
+          <Text
+            style={[AppStyles.baseText, {textAlign: 'center', color: 'white'}]}>
+            {Localization.t('provider')}
+          </Text>
+          <FontAwesome
+            name="filter"
+            size={20}
+            style={styles.iconFilter}
+            color={'white'}></FontAwesome>
+        </TouchableOpacity>
+      </View>
       <ScrollView style={styles.container}>
         <View style={styles.nav1}>
           <TextInput
+            type="text"
             placeholder="Nhập sản phẩm bạn muốn tìm"
             placeholderTextColor="#6d6dab"
-            style={styles.textInput}></TextInput>
+            style={styles.textInput}
+            onChange={(e) => setSearch(e.target.value)}></TextInput>
           <ButtonIconComponent
             name="search1"
             source="AntDesign"
             size={20}
             containerStyle={styles.searchBar}></ButtonIconComponent>
+            <ButtonIconComponent name=""></ButtonIconComponent>
         </View>
         <View style={styles.nav1}>
           <ButtonIconComponent
@@ -70,7 +153,9 @@ const HomeScreen = (props) => {
             source="FontAwesome"
             size={20}
             color={'red'}></ButtonIconComponent>
-          <Text> Các mặt hàng bán chạy nhất</Text>
+          <Text styel={AppStyles.baseText}>
+            Các mặt hàng bán chạy nhất {search}
+          </Text>
         </View>
 
         <View style={styles.nav2}>
@@ -147,4 +232,30 @@ const styles = StyleSheet.create({
     width: (AppSizes.screen.width * 41.05) / 100,
     height: (AppSizes.screen.width / 100) * 40,
   },
+  filter: {
+    flexDirection: 'row',
+    height: 45,
+    width: '100%',
+    backgroundColor: '#e91e63',
+  },
+  navFilter: {
+    padding: 10,
+    flexDirection: 'row',
+    height: '100%',
+    width: 96,
+    alignItems: 'center',
+  },
+  iconFilter: {
+    position: 'absolute',
+    top: '50%',
+    right: 1,
+  },
+  divider: {
+    width: 1,
+    height: 30,
+    backgroundColor: 'white',
+    top: 6,
+    marginLeft: 5,
+  },
+
 });
