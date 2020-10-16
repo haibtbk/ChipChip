@@ -5,20 +5,17 @@ import {useNavigation} from '@react-navigation/native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 const NavBar = (props) => {
-  const navigation = useNavigation();
   const {title} = props;
+  const navigation = useNavigation();
   return (
     <View style={styles.container}>
-      <View>
-        <Text style={styles.text}>{title}</Text>
-      </View>
-      <View style={styles.icon}>
-        <MaterialIcons
-          name="arrow-back"
-          color="white"
-          size={20}
-          onPress={() => navigation.pop(1)}></MaterialIcons>
-      </View>
+      <MaterialIcons
+        name="arrow-back"
+        color
+        style={styles.icon}
+        size={20}
+        onPress={() => navigation.pop(1)}></MaterialIcons>
+      <Text>{title}</Text>
     </View>
   );
 };
