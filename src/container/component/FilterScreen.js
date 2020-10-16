@@ -4,6 +4,7 @@ import {NavBar} from '@component';
 import {FilterType} from '@constant';
 import {API} from '@network';
 import ICON from 'react-native-vector-icons/Feather';
+import {AppColors} from '@theme';
 
 const FilterScreen = (props) => {
   const {route} = props;
@@ -47,9 +48,8 @@ const FilterScreen = (props) => {
       .catch((err) => console.log(err));
   };
 
-
   const ItemView = (props) => {
-    const {item, index} = props
+    const {item, index} = props;
     let [isOnChecked, setOnCheck] = useState(false);
     const onChecked = () => {
       setOnCheck(!isOnChecked);
@@ -57,12 +57,15 @@ const FilterScreen = (props) => {
     return (
       <View style={styles.flatList}>
         <TouchableOpacity onPress={() => onChecked()} style={styles.nav}>
-          <ICON
-            name="check"
-            size={20}
-            style={styles.icon}
-            color={isOnChecked ? '#41cd7d' : 'black'}></ICON>
-          <Text>{item.name}</Text>
+          {isOnChecked ? (<ICON
+              name="check"
+              size={20}
+              style={styles.icon}
+              color={AppColors.vividPink}></ICON>           
+          ) : (
+            <View></View>
+          )}
+          <Text style={{color: 'black'}}>{item.name}</Text>
         </TouchableOpacity>
       </View>
     );
@@ -75,7 +78,7 @@ const FilterScreen = (props) => {
         <FlatList
           keyExtractor={(item) => item?.id?.toString()}
           data={data}
-          renderItem={({item, index}) => <ItemView item={item} index={index}/>}
+          renderItem={({item, index}) => <ItemView item={item} index={index} />}
         />
       </View>
     </View>
@@ -86,13 +89,13 @@ export default FilterScreen;
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'yellow',
+    backgroundColor: 'white',
     flex: 1,
   },
   nav: {
-    width: '90%',
+    width: '95%',
     height: 40,
-    backgroundColor: '#6d6dab',
+    backgroundColor: 'pink',
     borderRadius: 50,
     margin: 10,
     flexDirection: 'row',

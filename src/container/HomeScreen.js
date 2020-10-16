@@ -16,7 +16,7 @@ import {
 import FabManager from '@fab/FabManager';
 import {useFocusEffect} from '@react-navigation/native';
 import {ButtonIconComponent} from '@component';
-import {AppSizes, AppStyles} from '@theme';
+import {AppSizes, AppStyles, AppColors} from '@theme';
 import {getProduct} from 'react-native-device-info';
 import {API} from '@network';
 import {createStackNavigator} from '@react-navigation/stack';
@@ -53,6 +53,7 @@ const HomeScreen = (props) => {
   };
 
   useEffect(() => {
+    
     getProductList();
     console.log(props);
   }, []);
@@ -236,7 +237,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     height: 45,
     width: '100%',
-    backgroundColor: '#e91e63',
+    backgroundColor: AppColors.vividPink,
   },
   navFilter: {
     padding: 10,

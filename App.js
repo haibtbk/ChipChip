@@ -10,6 +10,7 @@ import FabManager from './src/fab/FabManager';
 import FabButton from './src/fab/FabButton';
 import FabLightbox from './src/fab/FabLightbox';
 import Foundation from 'react-native-vector-icons/Foundation';
+import {AppColors} from '@theme';
 import {useFocusEffect} from '@react-navigation/native';
 import {
   LoginScreen,
@@ -54,7 +55,7 @@ function RootTabs() {
   return (
     <Tab.Navigator
       tabBarOptions={{
-        activeTintColor: '#e91e63',
+        activeTintColor: AppColors.vividPink,
       }}>
       <Tab.Screen
         name="Hàng cận date"

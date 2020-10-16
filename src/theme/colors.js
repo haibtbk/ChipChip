@@ -29,6 +29,7 @@ const app = {
     fabButton: '#00B3F3',
     grayCommitmentText: "#AEB5C6",
     black: '#000000',
+    vividPink: '#e91e63' 
 
 }
 

@@ -7,5 +7,6 @@
     "productType": "Loại sản phẩm",
     "price": "Giá tiền",
     "expiryDate": " Hạn dùng",
-    "provider": "Nhà cung cấp"
+    "provider": "Nhà cung cấp",
+    "apply": "Xác nhận"
 }
