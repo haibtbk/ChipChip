@@ -26,11 +26,17 @@ const styles = StyleSheet.create({
     width: AppSizes.screen.width,
     height: AppSizes.screen.height / 15,
     backgroundColor: '#e91e63',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   icon: {
+    position: 'absolute',
     left: 10,
-    top: AppSizes.screen.height / 60,
   },
+  text: {
+      fontSize: AppSizes.fontMedium,
+      color: 'white',
+  }
 });
 
 export default NavBar;
