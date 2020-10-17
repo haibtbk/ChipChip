@@ -15,7 +15,7 @@ import {
 } from 'react-native';
 import FabManager from '@fab/FabManager';
 import {useFocusEffect} from '@react-navigation/native';
-import { ButtonIconComponent } from '@component';
+import {ButtonIconComponent} from '@component';
 import {AppSizes, AppStyles, AppColors} from '@theme';
 import {getProduct} from 'react-native-device-info';
 import {API} from '@network';
@@ -66,8 +66,7 @@ const HomeScreen = (props) => {
    }, [productFilterTypes,priceFilterType, expiryDateFilterType, providerFilterTypes, searchKey]); 
   const {navigation} = props;
 
-  handleCallbackFilterProduct = (data) => {
-    console.log('data: ', data);
+  handleCallbackFilterProduct = (data) =>{
     setProductFilterTypes(data)
   }
 
@@ -82,7 +81,7 @@ const HomeScreen = (props) => {
             navigation.navigate('Filter', {
               title: 'Lọc theo sản phẩm',
               type: FilterType.product,
-              selectedIds: productFilterTypes,
+              selectedData: productFilterTypes,
               callbackData:(data) => handleCallbackFilterProduct(data)
             })
           }>

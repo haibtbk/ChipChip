@@ -4,9 +4,9 @@ import HomeScreen from './HomeScreen';
 import SalesScreen from './SalesScreen';
 import NotificationsScreen from './NotificationsScreen';
 import SettingsScreen from './SettingsScreen';
+import FilterScreen from './component/FilterScreen';
 import ProfileScreen from './component/ProfileScreen';
 import DialogScreen from './component/DialogScreen';
-import FilterScreen from './component/FilterScreen';
 export {
   LoginScreen,
   SignUpScreen,

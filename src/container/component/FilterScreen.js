@@ -6,11 +6,37 @@ import {API} from '@network';
 import ICON from 'react-native-vector-icons/Feather';
 import {AppColors} from '@theme';
 
+const defaultFn = () => {}
+
+const ItemView = ({
+  name = '',
+  isChecked = false,
+  onPress = defaultFn,
+}) => {
+  return (
+    <View style={styles.flatList}>
+      <TouchableOpacity onPress={onPress} style={styles.nav}>
+        {isChecked ? (
+          <ICON
+            name="check"
+            size={20}
+            style={styles.icon}
+            color={AppColors.vividPink}></ICON>
+        ) : (
+          <View></View>
+        )}
+        <Text style={{color: 'black'}}>{name}</Text>
+      </TouchableOpacity>
+    </View>
+  );
+};
+
 const FilterScreen = (props) => {
-  const {route} = props;
-  const {title, type, selectedData = []} = route.params;
-  const [data, setData] = useState([]);
-  const [selected, setSelected] = useState(selectedData);
+  const {route, navigation} = props;
+  const {title, type, callbackData } = route.params;
+  const [data, setItems] = useState([]);
+  const [selectedIds, setSelectedIds] = useState(route.params.selectedIds || []);
+
   useEffect(() => {
     switch (type) {
       case FilterType.product:
@@ -33,8 +59,8 @@ const FilterScreen = (props) => {
   const getProductTypes = () => {
     API.getProductTypes()
       .then((res) => {
-        const result = res?.data ?? [];
-        setData(result);
+        const productTypes = res?.data ?? [];
+        setItems(productTypes);
       })
       .catch((err) => console.log(err));
   };
@@ -42,44 +68,43 @@ const FilterScreen = (props) => {
   const getProviders = () => {
     API.getProviders()
       .then((res) => {
-        const result = res?.data ?? [];
-        setData(result);
+        const providers = res?.data ?? [];
+        setItems(providers);
       })
       .catch((err) => console.log(err));
   };
 
-  const ItemView = (props) => {
-    const {item, index} = props;
-    let [isOnChecked, setOnCheck] = useState(false);
-    const onChecked = () => {
-      setOnCheck(!isOnChecked);
-    };
-    return (
-      <View style={styles.flatList}>
-        <TouchableOpacity onPress={() => onChecked()} style={styles.nav}>
-          {isOnChecked ? (<ICON
-              name="check"
-              size={20}
-              style={styles.icon}
-              color={AppColors.vividPink}></ICON>           
-          ) : (
-            <View></View>
-          )}
-          <Text style={{color: 'black'}}>{item.name}</Text>
-        </TouchableOpacity>
-      </View>
-    );
-  };
+  const handlePressItem = id => {
+    const isChecked = selectedIds.includes(id);
+    if (isChecked) {
+      setSelectedIds(selectedIds.filter(item => item !== id));
+    } else {
+      setSelectedIds([...selectedIds, id]);
+    }
+  }
 
   return (
     <View style={styles.container}>
-      <NavBar title={title}></NavBar>
+      <NavBar
+        actionApply={() => {
+          callbackData && callbackData(selectedIds);
+          navigation.pop(1);
+        }}
+        title={title}></NavBar>
       <View style={styles.header}>
         <FlatList
           keyExtractor={(item) => item?.id?.toString()}
           data={data}
-          renderItem={({item, index}) => <ItemView item={item} index={index} />}
+          renderItem={({item, index}) => (
+            <ItemView
+              index={index}
+              name={item.name}
+              isChecked={selectedIds.includes(item.id)}
+              onPress={() => handlePressItem(item.id)}
+            />
+          )}
         />
+        <Text></Text>
       </View>
     </View>
   );

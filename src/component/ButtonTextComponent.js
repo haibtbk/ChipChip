@@ -8,7 +8,7 @@ const ButtonTextComponent = (props) => {
 
   return (
     <TouchableOpacity
-      onpress={() => action && action()}
+      onPress={() => action && action()}
       style={[styles.button, containerStyle && containerStyle]}>
       <Text style={[styles.text, textStyle && textStyle]}>{title}</Text>
     </TouchableOpacity>

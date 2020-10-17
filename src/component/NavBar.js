@@ -7,7 +7,7 @@ import Localization from '@localization';
 import {ButtonTextComponent} from '@component';
 
 const NavBar = (props) => {
-  const {title} = props;
+  const {title,actionApply, applyStyle} = props;
   const navigation = useNavigation();
   return (
     <View style={styles.container}>
@@ -20,9 +20,9 @@ const NavBar = (props) => {
       <Text style={styles.text}>{title}</Text>
       <View style={{position: 'absolute', right: 5,}}>
         <ButtonTextComponent
-          containerStyle={styles.buttonApply}
+          containerStyle={[styles.buttonApply, applyStyle && applyStyle]}
           textStyle={styles.text}
-          action={() => Alert.alert('Apply')}
+          action={() => actionApply && actionApply()}
           title={Localization.t('apply')}
         />
       </View>

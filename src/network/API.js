@@ -24,7 +24,7 @@ API.login = (params) => {
 };
 
 API.getProductList = (params)=>{
-    return API.instance.get(Endpoint.products, params);
+    return API.instance.get(Endpoint.products, {});
 }
 
 API.getProductTypes =() =>{
