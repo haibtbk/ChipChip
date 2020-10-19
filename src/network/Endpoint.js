@@ -2,7 +2,7 @@ const Endpoint = {
     LOGIN: "login",
     products: "products",
     productTypes: "product_types",
-    price: "price",
+    arrangedInOrder: "arrangedInOrder",
     providers: "providers"
 }
 

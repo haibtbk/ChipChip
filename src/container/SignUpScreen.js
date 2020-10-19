@@ -1,6 +1,10 @@
 import * as React from 'react';
 import {ScrollView, View, Text, StyleSheet, TextInput} from 'react-native';
-import {ButtonComponent, CheckBoxComponent} from '@component';
+import {
+  ButtonComponent,
+  CheckBoxComponent,
+  ButtonIconComponent,
+} from '@component';
 
 const SignUpScreen = (props) => {
   const {navigation} = props;
@@ -8,7 +12,14 @@ const SignUpScreen = (props) => {
   return (
     <View style={styles.container}>
       <ScrollView style={styles.header}>
-        <Text style={styles.h1}>Sign Up</Text>
+        <ButtonIconComponent
+          name="close"
+          source="AntDesign"
+          color={'white'}
+          action={() => navigation.pop(1)}
+          containerStyle={styles.goBack}
+        />
+        <Text style={styles.h1}>Đăng kí</Text>
 
         <View>
           <TextInput
@@ -76,7 +87,7 @@ const SignUpScreen = (props) => {
           <Text
             style={styles.text2}
             onPress={() => navigation.navigate('Login')}>
-            Sign In
+            Đăng nhập
           </Text>
         </View>
       </ScrollView>
@@ -110,7 +121,7 @@ const styles = StyleSheet.create({
   },
   nav3: {
     flexDirection: 'row',
-    marginTop: '20%',
+    marginTop: '10%',
     alignSelf: 'center',
   },
   textInput: {
@@ -140,6 +151,16 @@ const styles = StyleSheet.create({
     marginTop: '0.5%',
   },
   marginButton: {
+    marginTop: 10,
+  },
+  goBack: {
+    alignSelf: 'flex-end',
+    backgroundColor: 'rgba(52, 52, 52, 0.8)',
+    borderRadius: 15,
+    width: 30,
+    height: 30,
+    alignItems: 'center',
+    justifyContent: 'center',
     marginTop: 10,
   },
 });

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import {
   ScrollView,
   Text,
@@ -8,15 +8,19 @@ import {
   Linking,
   TextInput,
   SafeAreaView,
-
 } from 'react-native';
-import { AppStyles, AppSizes, AppColors } from '@theme'
-import { ButtonComponent, CheckBoxComponent, ButtonIconComponent } from '@component';
-import { API } from "@network"
-import Localization from '@localization'
+import {AppStyles, AppSizes, AppColors} from '@theme';
+import {
+  ButtonComponent,
+  CheckBoxComponent,
+  ButtonIconComponent,
+} from '@component';
+import {API} from '@network';
+import Localization from '@localization';
+import {TouchableOpacity} from 'react-native-gesture-handler';
 
 const LoginScreen = (props) => {
-  const { navigation } = props;
+  const {navigation} = props;
   let [isSecureText, setSecureText] = useState(true);
 
   const onPressEyePassword = () => {
@@ -35,8 +39,17 @@ const LoginScreen = (props) => {
       .catch((err) => Alert.alert('Error', err.message ?? 'Login fail!!!'));
   };
   return (
-    <ScrollView style={{ height: '100%', backgroundColor: '#16182b', }} contentContainerStyle={{ height: '100%' }}>
+    <ScrollView
+      style={{height: '100%', backgroundColor: '#16182b'}}
+      contentContainerStyle={{height: '100%'}}>
       <View style={styles.container}>
+        <ButtonIconComponent
+          name="close"
+          source="AntDesign"
+          color={'white'}
+          action={() => navigation.pop(1)}
+          containerStyle={styles.goBack}
+        />
         <Text style={styles.h1}>{Localization.t('signin')}</Text>
         <TextInput
           underlineColorAndroid="transparent"
@@ -67,7 +80,8 @@ const LoginScreen = (props) => {
               isCheck={false}
               status={(isChecked) => {
                 console.log(isChecked);
-              }} />
+              }}
+            />
             <Text style={styles.text1}>{Localization.t('rememberMe')}</Text>
           </View>
           <Text style={styles.text2} onPress={() => Alert.alert('ok')}>
@@ -76,7 +90,7 @@ const LoginScreen = (props) => {
         </View>
 
         <ButtonComponent
-          containerStyle={{ width: '100%' }}
+          containerStyle={{width: '100%'}}
           title={Localization.t('signin')}
           action={() => doLogin()}
         />
@@ -92,28 +106,26 @@ const LoginScreen = (props) => {
             name="facebook-with-circle"
             color="white"
             size={35}
-            action={() =>
-              Linking.openURL('https://www.facebook.com/')
-            } />
-
+            action={() => Linking.openURL('https://www.facebook.com/')}
+          />
 
           <ButtonIconComponent
             name="google-plus-official"
-            source='FontAwesome'
+            source="FontAwesome"
             size={35}
             color="white"
             action={() =>
               Linking.openURL(
                 'https://accounts.google.com/signin/v2/identifier?continue=https%3A%2F%2Fmail.google.com%2Fmail%2F&service=mail&sacu=1&rip=1&flowName=GlifWebSignIn&flowEntry=ServiceLogin',
               )
-            } />
+            }
+          />
           <ButtonIconComponent
             name="twitter-with-circle"
             color="white"
             size={35}
-            action={() =>
-              Linking.openURL('https://twitter.com/login')
-            } />
+            action={() => Linking.openURL('https://twitter.com/login')}
+          />
         </View>
         <View style={styles.CreateAccount}>
           <Text style={styles.text3}>{Localization.t('dontHaveAccount')}</Text>
@@ -124,8 +136,7 @@ const LoginScreen = (props) => {
           </Text>
         </View>
       </View>
-
-    </ScrollView >
+    </ScrollView>
   );
 };
 const styles = StyleSheet.create({
@@ -135,13 +146,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     padding: AppSizes.paddingMedium,
   },
-  header: { backgroundColor: 'red', justifyContent: 'center' },
+  header: {backgroundColor: 'red', justifyContent: 'center'},
   body: {
     justifyContent: 'center',
     marginHorizontal: 16,
     alignItems: 'center',
     flex: 1,
-    backgroundColor: 'red'
+    backgroundColor: 'red',
   },
   textInput1: {
     backgroundColor: '#242846',
@@ -246,6 +257,15 @@ const styles = StyleSheet.create({
   },
   text4: {
     color: '#41cd7d',
+  },
+  goBack: {
+    alignSelf: 'flex-end',
+    backgroundColor: 'rgba(52, 52, 52, 0.8)',
+    borderRadius: 15,
+    width: 30,
+    height: 30,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });
 

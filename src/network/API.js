@@ -31,8 +31,8 @@ API.getProductTypes =() =>{
     return API.instance.get(Endpoint.productTypes);
 } 
 
-API.getPrices = () => {
-    return API.instance.get(Endpoint.price);
+API.getArrangedInOrder = () => {
+    return API.instance.get(Endpoint.arrangedInOrder);
 }
 API.getProviders = () => {
     return API.instance.get(Endpoint.providers);

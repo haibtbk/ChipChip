@@ -15,7 +15,7 @@ import {
 } from 'react-native';
 import FabManager from '@fab/FabManager';
 import {useFocusEffect} from '@react-navigation/native';
-import { ButtonIconComponent } from '@component';
+import {ButtonIconComponent} from '@component';
 import {AppSizes, AppStyles, AppColors} from '@theme';
 import {getProduct} from 'react-native-device-info';
 import {API} from '@network';
@@ -24,15 +24,19 @@ import {TouchableOpacity} from 'react-native-gesture-handler';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Localization from '@localization';
 import {FilterType} from '@constant';
-import _ from 'lodash'
+import _ from 'lodash';
 
 const HomeScreen = (props) => {
   const [products, setProducts] = useState([]);
   const [searchKey, setSearchKey] = useState('');
-  const [productFilterTypes, setProductFilterTypes] = useState([])
-  const [priceFilterType, setPriceFilterType] = useState(false)
-  const [expiryDateFilterType, setExpiryFilterType] = useState(false)
-  const [providerFilterTypes, setProviderFilterTypes] = useState([])
+  const [productFilterTypes, setProductFilterTypes] = useState([]);
+  const [arrangedInOrderPriceFilterType, setArrangedInOrderPriceFilterType] = useState(
+    false,
+  );
+  const [arrangedInOrderDateFilterType, setArrangedInOrderDateFilterType] = useState(
+    false,
+  );
+  const [providerFilterTypes, setProviderFilterTypes] = useState([]);
   useFocusEffect(
     React.useCallback(() => {
       // Do something when the screen is focused
@@ -40,7 +44,7 @@ const HomeScreen = (props) => {
         FabManager.show();
       }, 100);
       return () => {
-        // Do something when the screen is unfocused
+        // Do something when the screen is unfocusXed
         // Useful for cleanup functions
         FabManager.hide();
       };
@@ -48,11 +52,17 @@ const HomeScreen = (props) => {
   );
 
   const getProductList = () => {
-    const productIds = _.map(productFilterTypes, item => item.id)
-    const price = priceFilterType
-    const expiryDate = expiryDateFilterType
-    const providerIds = _.map(productFilterTypes, item => item.id)
-    const params = {searchKey, productIds, price, expiryDate, providerIds };
+    const productIds = _.map(productFilterTypes, (item) => item.id);
+    const arrangedInOrderPriceFilterTypeIds = _.map(
+      arrangedInOrderPriceFilterType,
+      (item) => item.id,
+    );
+    const arrangedInOrderDateFilterTypeIds = _.map(
+      arrangedInOrderDateFilterType,
+      (item) => item.id,
+    );
+    const providerIds = _.map(providerFilterTypes, (item) => item.id);
+    const params = {searchKey, productIds, arrangedInOrderPriceFilterTypeIds, arrangedInOrderDateFilterTypeIds, providerIds};
     API.getProductList(params)
       .then((res) => {
         const products = res?.data ?? [];
@@ -62,14 +72,33 @@ const HomeScreen = (props) => {
   };
 
   useEffect(() => {
-     getProductList();
-   }, [productFilterTypes,priceFilterType, expiryDateFilterType, providerFilterTypes, searchKey]); 
+    getProductList();
+  }, [
+    productFilterTypes,
+    arrangedInOrderPriceFilterType,
+    arrangedInOrderDateFilterType,
+    providerFilterTypes,
+    searchKey,
+  ]);
+
   const {navigation} = props;
 
-  handleCallbackFilterProduct = (data) => {
+  handleCallbackFilterProductTypes = (data) => {
     console.log('data: ', data);
-    setProductFilterTypes(data)
-  }
+    setProductFilterTypes(data);
+  };
+  handleCallbackFilterProductOrderPrice = (data) => {
+    console.log('data: ', data);
+    setArrangedInOrderPriceFilterType(data);
+  };
+  handleCallbackFilterProductOrderDate = (data) => {
+    console.log('data: ', data);
+    setArrangedInOrderDateFilterType(data);
+  };
+  handleCallbackFilterProductProviders = (data) => {
+    console.log('data: ', data);
+    setProviderFilterTypes(data);
+  };
 
   return (
     <ImageBackground
@@ -83,7 +112,7 @@ const HomeScreen = (props) => {
               title: 'Lọc theo sản phẩm',
               type: FilterType.product,
               selectedIds: productFilterTypes,
-              callbackData:(data) => handleCallbackFilterProduct(data)
+              callbackData: (data) => handleCallbackFilterProductTypes(data),
             })
           }>
           <Text
@@ -100,7 +129,12 @@ const HomeScreen = (props) => {
         <TouchableOpacity
           style={styles.navFilter}
           onPress={() =>
-            navigation.navigate('Filter', {title: 'Lọc theo giá tiền'})
+            navigation.navigate('Filter', {
+              title: 'Lọc theo giá tiền',
+              type: FilterType.arrangedInOrder,
+              selectedIds: arrangedInOrderPriceFilterType,
+              callbackData: (data) => handleCallbackFilterProductOrderPrice(data),
+            })
           }>
           <Text
             style={[AppStyles.baseText, {textAlign: 'center', color: 'white'}]}>
@@ -116,7 +150,13 @@ const HomeScreen = (props) => {
         <TouchableOpacity
           style={styles.navFilter}
           onPress={() =>
-            navigation.navigate('Filter', {title: 'Lọc theo Hạn sử dụng'})
+            navigation.navigate('Filter', {
+              title: 'Lọc theo Hạn sử dụng',
+              type: FilterType.arrangedInOrder,
+              selectedIds: arrangedInOrderDateFilterType,
+              callbackData: (data) => handleCallbackFilterProductOrderDate
+                  (data),
+            })
           }>
           <Text
             style={[AppStyles.baseText, {textAlign: 'center', color: 'white'}]}>
@@ -135,6 +175,8 @@ const HomeScreen = (props) => {
             navigation.navigate('Filter', {
               title: 'Lọc theo nhà cung cấp',
               type: FilterType.provider,
+              selectedIds: providerFilterTypes,
+              callbackData: (data) => handleCallbackFilterProductProviders(data),
             })
           }>
           <Text
@@ -156,13 +198,14 @@ const HomeScreen = (props) => {
             placeholderTextColor="#6d6dab"
             style={styles.textInput}
             value={searchKey}
-            onChangeText={text => setSearchKey(text)}
+            onChangeText={(text) => setSearchKey(text)}
           />
           <ButtonIconComponent
             name="search1"
             source="AntDesign"
             size={20}
-            containerStyle={styles.searchBar} />
+            containerStyle={styles.searchBar}
+          />
           <ButtonIconComponent name="" />
         </View>
         <View style={styles.nav1}>
@@ -170,10 +213,9 @@ const HomeScreen = (props) => {
             name="tags"
             source="FontAwesome"
             size={20}
-            color={'red'} />
-          <Text styel={AppStyles.baseText}>
-            Các mặt hàng bán chạy nhất
-          </Text>
+            color={'red'}
+          />
+          <Text styel={AppStyles.baseText}>Các mặt hàng bán chạy nhất</Text>
         </View>
 
         <View style={styles.nav2}>

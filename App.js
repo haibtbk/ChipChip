@@ -73,9 +73,7 @@ function RootTabs() {
             <HomeStack.Screen
               name="Hang can date"
               component={HomeScreen}
-              options={
-                {headerShown: false}
-              }             
+              options={{headerShown: false}}
             />
           </HomeStack.Navigator>
         )}
@@ -114,8 +112,11 @@ function RootTabs() {
         }}>
         {() => (
           <SettingsStack.Navigator>
-            <SettingsStack.Screen name="Account" component={SettingsScreen} />
-            <SettingsStack.Screen name="Profile" component={ProfileScreen} />
+            <SettingsStack.Screen
+              name="Account"
+              component={SettingsScreen}
+              options={{headerShown: false}}
+            />
           </SettingsStack.Navigator>
         )}
       </Tab.Screen>
@@ -186,8 +187,8 @@ export default App = (props) => {
         <RootStack.Navigator headerMode="none">
           <RootStack.Screen name="Main">{() => RootTabs()}</RootStack.Screen>
           <Stack.Screen name="Filter" component={FilterScreen} />
-          <Stack.Screen name="Login" component={LoginScreen} />
-          <Stack.Screen name="SignUp" component={SignUpScreen} />
+          <SettingsStack.Screen name="Login" component={LoginScreen} />
+          <SettingsStack.Screen name="SignUp" component={SignUpScreen} />
           {RootDialog()}
           <Stack.Screen
             name="fab"
