@@ -86,7 +86,7 @@ const SignUpScreen = (props) => {
           <Text style={styles.text3}>Alrealy have an account? </Text>
           <Text
             style={styles.text2}
-            onPress={() => navigation.navigate('Login')}>
+            onPress={() => navigation.replace('Login')}>
             Đăng nhập
           </Text>
         </View>

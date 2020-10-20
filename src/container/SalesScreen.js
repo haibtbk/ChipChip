@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   ScrollView,
   Text,
@@ -9,14 +9,26 @@ import {
   ImageBackground,
   Image,
   FlatList,
+  ActivityIndicator,
+  Icon,
+  Alert,
 } from 'react-native';
 import FabManager from '@fab/FabManager';
 import {useFocusEffect} from '@react-navigation/native';
 import {ButtonIconComponent} from '@component';
-import {AppSizes} from '@theme';
-import flatListData from '../data/flatListData';
+import {AppSizes, AppStyles, AppColors} from '@theme';
+import {getProduct} from 'react-native-device-info';
+import {API} from '@network';
+import {createStackNavigator} from '@react-navigation/stack';
+import {TouchableOpacity} from 'react-native-gesture-handler';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import Localization from '@localization';
+import {FilterType} from '@constant';
+import _ from 'lodash';
 
-const HomeScreen = (props) => {
+const SalesScreen = (props) => {
+  const [products, setProducts] = useState([]);
+  const [searchKey, setSearchKey] = useState('');
   useFocusEffect(
     React.useCallback(() => {
       // Do something when the screen is focused
@@ -24,41 +36,62 @@ const HomeScreen = (props) => {
         FabManager.show();
       }, 100);
       return () => {
-        // Do something when the screen is unfocused
+        // Do something when the screen is unfocusXed
         // Useful for cleanup functions
         FabManager.hide();
       };
     }, []),
   );
 
+  const getProductList = () => {
+    API.getProductList()
+      .then((res) => {
+        const products = res?.data ?? [];
+        setProducts(products);
+      })
+      .catch((err) => console.log(err));
+  };
+
+  useEffect(() => {
+    getProductList();
+  }, [searchKey]);
   return (
-    <ImageBackground style={styles.imageBackground} source={ require('@images/background/backgroundSale.jpg')}>
+    <ImageBackground
+      source={require('@images/background/backgroundSale.jpg')}
+      style={styles.imageBackground}>
       <ScrollView style={styles.container}>
         <View style={styles.nav1}>
           <TextInput
+            type="text"
             placeholder="Nhập sản phẩm bạn muốn tìm"
-            placeholderTextColor="black"
-            style={styles.textInput}></TextInput>
+            placeholderTextColor="#6d6dab"
+            style={styles.textInput}
+            value={searchKey}
+            onChangeText={(text) => setSearchKey(text)}
+          />
           <ButtonIconComponent
             name="search1"
             source="AntDesign"
             size={20}
-            containerStyle={styles.searchBar}></ButtonIconComponent>
+            containerStyle={styles.searchBar}
+          />
+          <ButtonIconComponent name="" />
         </View>
         <View style={styles.nav1}>
           <ButtonIconComponent
             name="tags"
             source="FontAwesome"
             size={20}
-            color={'red'}></ButtonIconComponent>
-          <Text> Các mặt hàng bán chạy nhất</Text>
+            color={'red'}
+          />
+          <Text styel={AppStyles.baseText}>Các mặt hàng bán chạy nhất</Text>
         </View>
 
         <View style={styles.nav2}>
           <FlatList
             horizontal={false}
             numColumns={2}
-            data={flatListData}
+            data={products}
             keyExtractor={(item) => item.id}
             renderItem={({item}) => {
               return (
@@ -81,12 +114,12 @@ const HomeScreen = (props) => {
   );
 };
 
-export default HomeScreen;
+export default SalesScreen;
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 10,
+    padding: 20,
   },
   textInput: {
     height: 50,
@@ -125,7 +158,32 @@ const styles = StyleSheet.create({
     top: 15,
   },
   image: {
-    width: AppSizes.screen.width * 43/100,
-    height: AppSizes.screen.width /100*40,
+    width: (AppSizes.screen.width * 41.05) / 100,
+    height: (AppSizes.screen.width / 100) * 40,
+  },
+  filter: {
+    flexDirection: 'row',
+    height: 45,
+    width: '100%',
+    backgroundColor: AppColors.vividPink,
+  },
+  navFilter: {
+    padding: 10,
+    flexDirection: 'row',
+    height: '100%',
+    width: 96,
+    alignItems: 'center',
+  },
+  iconFilter: {
+    position: 'absolute',
+    top: '50%',
+    right: 1,
+  },
+  divider: {
+    width: 1,
+    height: 30,
+    backgroundColor: 'white',
+    top: 6,
+    marginLeft: 5,
   },
 });

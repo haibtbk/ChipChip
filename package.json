@@ -18,6 +18,7 @@
     "@react-navigation/material-bottom-tabs": "^5.2.18",
     "@react-navigation/native": "^5.7.4",
     "@react-navigation/stack": "^5.9.1",
+    "@reduxjs/toolkit": "^1.4.0",
     "axios": "^0.20.0",
     "i18n-js": "^3.7.1",
     "lodash": "^4.17.20",
@@ -35,6 +36,8 @@
     "react-native-screens": "^2.11.0",
     "react-native-vector-icons": "^7.1.0",
     "react-navigation": "^4.4.1",
+    "react-redux": "^7.2.1",
+    "redux": "^4.0.5",
     "sprintf-js": "^1.1.2"
   },
   "devDependencies": {
@@ -45,7 +48,8 @@
     "eslint": "^6.5.1",
     "jest": "^25.1.0",
     "metro-react-native-babel-preset": "^0.59.0",
-    "react-test-renderer": "16.13.1"
+    "react-test-renderer": "16.13.1",
+    "redux-devtools": "^3.7.0"
   },
   "jest": {
     "preset": "react-native"
