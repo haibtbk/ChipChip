@@ -131,7 +131,7 @@ const LoginScreen = (props) => {
           <Text style={styles.text3}>{Localization.t('dontHaveAccount')}</Text>
           <Text
             style={styles.text4}
-            onPress={() => navigation.navigate('SignUp')}>
+            onPress={() => navigation.replace('SignUp')}>
             {Localization.t('createNewAccount')}
           </Text>
         </View>

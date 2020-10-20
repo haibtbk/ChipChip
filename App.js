@@ -1,17 +1,15 @@
 import * as React from 'react';
-import {Component, useRef} from 'react';
 import {Text, View, Button, Image, Alert} from 'react-native';
-import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import EntypoIcon from 'react-native-vector-icons/FontAwesome';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import {createStackNavigator, HeaderTitle} from '@react-navigation/stack';
+import {createStackNavigator} from '@react-navigation/stack';
+import {NavigationContainer} from '@react-navigation/native';
 import FabManager from './src/fab/FabManager';
 import FabButton from './src/fab/FabButton';
 import FabLightbox from './src/fab/FabLightbox';
 import Foundation from 'react-native-vector-icons/Foundation';
 import {AppColors} from '@theme';
-import {useFocusEffect} from '@react-navigation/native';
 import {
   LoginScreen,
   HomeScreen,
@@ -25,23 +23,23 @@ import {
 } from '@container';
 import * as RNLocalize from 'react-native-localize';
 import Localization from '@localization';
-import {ButtonIconComponent} from '@component';
 
-function DetailsScreen({navigation}) {
-  return (
-    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-      <Text>Details Screen</Text>
-      <Button
-        title="Go to Details... again"
-        onPress={() => navigation.push('Details')}
-      />
-      <Button
-        title="Show Dialog"
-        onPress={() => navigation.navigate('Dialog')}
-      />
-    </View>
-  );
-}
+
+// function DetailsScreen({navigation}) {
+//   return (
+//     <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+//       <Text>Details Screen</Text>
+//       <Button
+//         title="Go to Details... again"
+//         onPress={() => navigation.push('Details')}
+//       />
+//       <Button
+//         title="Show Dialog"
+//         onPress={() => navigation.navigate('Dialog')}
+//       />
+//     </View>
+//   );
+// }
 
 const Tab = createBottomTabNavigator();
 const HomeStack = createStackNavigator();

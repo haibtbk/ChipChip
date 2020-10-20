@@ -27,6 +27,10 @@ API.getProductList = (params)=>{
     return API.instance.get(Endpoint.products, {});
 }
 
+API.getNotificationList = () => {
+    return API.instance.get(Endpoint.notifications);
+}
+
 API.getProductTypes =() =>{
     return API.instance.get(Endpoint.productTypes);
 } 

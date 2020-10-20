@@ -38,7 +38,7 @@ const FilterScreen = (props) => {
 
   useEffect(() => { 
     switch (type) { 
-      case FilterType.product:
+      case FilterType.productTypes:
         getProductTypes();
         break;
       case FilterType.arrangedInOrder:

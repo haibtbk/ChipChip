@@ -3,7 +3,8 @@ const Endpoint = {
     products: "products",
     productTypes: "product_types",
     arrangedInOrder: "arrangedInOrder",
-    providers: "providers"
+    providers: "providers",
+    notifications: "notifications",
 }
 
 export default Endpoint

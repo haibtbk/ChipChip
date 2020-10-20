@@ -99,6 +99,7 @@ const HomeScreen = (props) => {
     console.log('data: ', data);
     setProviderFilterTypes(data);
   };
+ 
 
   return (
     <ImageBackground
@@ -110,13 +111,13 @@ const HomeScreen = (props) => {
           onPress={() =>
             navigation.navigate('Filter', {
               title: 'Lọc theo sản phẩm',
-              type: FilterType.product,
+              type: FilterType.productTypes,
               selectedIds: productFilterTypes,
               callbackData: (data) => handleCallbackFilterProductTypes(data),
             })
           }>
           <Text
-            style={[AppStyles.baseText, {textAlign: 'center', color: 'white'}]}>
+            style={[AppStyles.baseText, {textAlign: 'center', color:'white'}]}>
             {Localization.t('productType')}
           </Text>
           <FontAwesome
@@ -318,3 +319,7 @@ const styles = StyleSheet.create({
     marginLeft: 5,
   },
 });
+
+
+
+

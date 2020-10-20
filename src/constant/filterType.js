@@ -1,5 +1,5 @@
 export default TYPE ={
-    product: 'product',
+    productTypes: 'productTypes',
     arrangedInOrder: 'arrangedInOrder',
     arrangedInOrderDate: 'arrangedInOrderDate',
     provider: 'provider',
