@@ -20,6 +20,7 @@ import {
   DialogScreen,
   SignUpScreen,
   FilterScreen,
+  ProductDetailScreen
 } from '@container';
 import * as RNLocalize from 'react-native-localize';
 import Localization from '@localization';
@@ -73,6 +74,7 @@ function RootTabs() {
               component={HomeScreen}
               options={{headerShown: false}}
             />
+            
           </HomeStack.Navigator>
         )}
       </Tab.Screen>
@@ -187,6 +189,7 @@ export default App = (props) => {
           <Stack.Screen name="Filter" component={FilterScreen} />
           <SettingsStack.Screen name="Login" component={LoginScreen} />
           <SettingsStack.Screen name="SignUp" component={SignUpScreen} />
+          <Stack.Screen name="ProductDetail" component={ProductDetailScreen}></Stack.Screen>
           {RootDialog()}
           <Stack.Screen
             name="fab"

@@ -18,6 +18,27 @@ import {
 import {API} from '@network';
 import Localization from '@localization';
 import {TouchableOpacity} from 'react-native-gesture-handler';
+import { isEmail, isEmpty } from 'validator';
+
+const required = (value) => {
+  if (isEmpty(value)) {
+      return <small className="form-text text-danger">This field is required</small>;
+  }
+}
+
+const email = (value) => {
+  if (!isEmail(value)) {
+      return <small className="form-text text-danger">Invalid email format</small>;
+  }
+}
+
+const minLength = (value) => {
+  if (value.trim().length < 6) {
+      return <small className="form-text text-danger">Password must be at least 6 characters long</small>;
+  }
+}
+
+
 
 const LoginScreen = (props) => {
   const {navigation} = props;
@@ -56,6 +77,7 @@ const LoginScreen = (props) => {
           placeholder="Nhập email đăng nhập"
           placeholderTextColor="#6d6dab"
           color="#6d6dab"
+          validations={[required, email]}
           keyboardType="email-address"
           style={styles.textInput1}></TextInput>
         <View style={styles.stylePassword}>
@@ -64,6 +86,7 @@ const LoginScreen = (props) => {
             placeholder="Nhập mật khẩu"
             placeholderTextColor="#6d6dab"
             color="#6d6dab"
+            validations={[required, minLength]}
             keyboardType="default"
             secureTextEntry={isSecureText}
             style={styles.textInput2}></TextInput>

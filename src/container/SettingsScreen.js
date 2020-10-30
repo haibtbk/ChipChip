@@ -109,7 +109,7 @@ const SettingsScreen = (props) => {
           <ButtonIconTextComponent
           name="hearto"
           source="AntDesign"
-          title="Quản lí đơn hàng"
+          title="Sản phẩm yêu thích"
           size={20}
           containerStyle={styles.nav1}
           action={() => Alert.alert('...')}
@@ -181,6 +181,8 @@ const SettingsScreen = (props) => {
           color={'black'}
           textStyle={AppSizes.fontBase}
           />
+           <View style={styles.nav3}/>
+
     </ScrollView>
   );
 };
@@ -207,7 +209,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
     backgroundColor: '#D3D3D3',
     height: 0.5,
-    width: '95%',
+    width: '100%',
   }
 });
 

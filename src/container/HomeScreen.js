@@ -30,12 +30,14 @@ const HomeScreen = (props) => {
   const [products, setProducts] = useState([]);
   const [searchKey, setSearchKey] = useState('');
   const [productFilterTypes, setProductFilterTypes] = useState([]);
-  const [arrangedInOrderPriceFilterType, setArrangedInOrderPriceFilterType] = useState(
-    false,
-  );
-  const [arrangedInOrderDateFilterType, setArrangedInOrderDateFilterType] = useState(
-    false,
-  );
+  const [
+    arrangedInOrderPriceFilterType,
+    setArrangedInOrderPriceFilterType,
+  ] = useState(false);
+  const [
+    arrangedInOrderDateFilterType,
+    setArrangedInOrderDateFilterType,
+  ] = useState(false);
   const [providerFilterTypes, setProviderFilterTypes] = useState([]);
   useFocusEffect(
     React.useCallback(() => {
@@ -52,7 +54,8 @@ const HomeScreen = (props) => {
   );
 
   const getProductList = () => {
-    const productIds = _.map(productFilterTypes, (item) => item.id);
+    const productIds = _.map(products, (item) => item.id);
+    const productTypeIds = _.map(productFilterTypes, (item) => item.id);
     const arrangedInOrderPriceFilterTypeIds = _.map(
       arrangedInOrderPriceFilterType,
       (item) => item.id,
@@ -62,7 +65,14 @@ const HomeScreen = (props) => {
       (item) => item.id,
     );
     const providerIds = _.map(providerFilterTypes, (item) => item.id);
-    const params = {searchKey, productIds, arrangedInOrderPriceFilterTypeIds, arrangedInOrderDateFilterTypeIds, providerIds};
+    const params = {
+      searchKey,
+      productIds,
+      productTypeIds,
+      arrangedInOrderPriceFilterTypeIds,
+      arrangedInOrderDateFilterTypeIds,
+      providerIds,
+    };
     API.getProductList(params)
       .then((res) => {
         const products = res?.data ?? [];
@@ -99,7 +109,6 @@ const HomeScreen = (props) => {
     console.log('data: ', data);
     setProviderFilterTypes(data);
   };
- 
 
   return (
     <ImageBackground
@@ -117,12 +126,15 @@ const HomeScreen = (props) => {
             })
           }>
           <Text
-            style={[AppStyles.baseText, {textAlign: 'center', color:'white'}]}>
+            style={[
+              AppStyles.fontMedium,
+              {textAlign: 'center', color: 'white', width: '70%'},
+            ]}>
             {Localization.t('productType')}
           </Text>
           <FontAwesome
             name="filter"
-            size={20}
+            size={15}
             style={styles.iconFilter}
             color={'white'}></FontAwesome>
         </TouchableOpacity>
@@ -134,16 +146,20 @@ const HomeScreen = (props) => {
               title: 'Lọc theo giá tiền',
               type: FilterType.arrangedInOrder,
               selectedIds: arrangedInOrderPriceFilterType,
-              callbackData: (data) => handleCallbackFilterProductOrderPrice(data),
+              callbackData: (data) =>
+                handleCallbackFilterProductOrderPrice(data),
             })
           }>
           <Text
-            style={[AppStyles.baseText, {textAlign: 'center', color: 'white'}]}>
+            style={[
+              AppStyles.fontMedium,
+              {textAlign: 'center', color: 'white'},
+            ]}>
             {Localization.t('price')}
           </Text>
           <FontAwesome
             name="filter"
-            size={20}
+            size={15}
             style={styles.iconFilter}
             color={'white'}></FontAwesome>
         </TouchableOpacity>
@@ -155,17 +171,20 @@ const HomeScreen = (props) => {
               title: 'Lọc theo Hạn sử dụng',
               type: FilterType.arrangedInOrder,
               selectedIds: arrangedInOrderDateFilterType,
-              callbackData: (data) => handleCallbackFilterProductOrderDate
-                  (data),
+              callbackData: (data) =>
+                handleCallbackFilterProductOrderDate(data),
             })
           }>
           <Text
-            style={[AppStyles.baseText, {textAlign: 'center', color: 'white'}]}>
+            style={[
+              AppStyles.fontMedium,
+              {textAlign: 'center', color: 'white'},
+            ]}>
             {Localization.t('expiryDate')}
           </Text>
           <FontAwesome
             name="filter"
-            size={20}
+            size={15}
             style={styles.iconFilter}
             color={'white'}></FontAwesome>
         </TouchableOpacity>
@@ -177,16 +196,20 @@ const HomeScreen = (props) => {
               title: 'Lọc theo nhà cung cấp',
               type: FilterType.provider,
               selectedIds: providerFilterTypes,
-              callbackData: (data) => handleCallbackFilterProductProviders(data),
+              callbackData: (data) =>
+                handleCallbackFilterProductProviders(data),
             })
           }>
           <Text
-            style={[AppStyles.baseText, {textAlign: 'center', color: 'white'}]}>
+            style={[
+              AppStyles.fontMedium,
+              {width: '70%', textAlign: 'center', color: 'white'},
+            ]}>
             {Localization.t('provider')}
           </Text>
           <FontAwesome
             name="filter"
-            size={20}
+            size={15}
             style={styles.iconFilter}
             color={'white'}></FontAwesome>
         </TouchableOpacity>
@@ -207,7 +230,13 @@ const HomeScreen = (props) => {
             size={20}
             containerStyle={styles.searchBar}
           />
-          <ButtonIconComponent name="" />
+          <ButtonIconComponent
+            name="close"
+            source="AntDesign"
+            size={20}
+            containerStyle={styles.close}
+            action={() => setSearchKey('')}
+          />
         </View>
         <View style={styles.nav1}>
           <ButtonIconComponent
@@ -216,28 +245,33 @@ const HomeScreen = (props) => {
             size={20}
             color={'red'}
           />
-          <Text styel={AppStyles.baseText}>Các mặt hàng bán chạy nhất</Text>
+          <Text styel={AppStyles.fontMedium}>Các mặt hàng bán chạy nhất</Text>
         </View>
 
         <View style={styles.nav2}>
           <FlatList
-            horizontal={false}
             numColumns={2}
             data={products}
             keyExtractor={(item) => item.id}
             renderItem={({item}) => {
               return (
-                <View style={styles.nav3}>
+                <TouchableOpacity
+                  style={styles.nav3}
+                  onPress={() =>
+                    navigation.navigate('ProductDetail', {
+                      item: item,
+                    })
+                  }>
                   <Image
                     style={styles.image}
-                    source={{uri: item.source}}></Image>
+                    source={{uri: item.avatar}}></Image>
                   <Text style={{textAlign: 'center', color: 'yellow'}}>
                     {item.name}
                   </Text>
                   <Text style={{textAlign: 'center', color: 'yellow'}}>
-                    Giá Tiền: {item.price} VNĐ
+                    Giá Tiền: {item.price} $
                   </Text>
-                </View>
+                </TouchableOpacity>
               );
             }}></FlatList>
         </View>
@@ -252,10 +286,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
+    height: AppSizes.screen.height,
+    width: AppSizes.screen.width,
   },
   textInput: {
-    height: 50,
-    width: '100%',
+    marginLeft: '2%',
+    height: 40,
+    width: '85%',
     borderRadius: 20,
     paddingLeft: 40,
     backgroundColor: '#A4A4A4',
@@ -266,60 +303,60 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   nav1: {
+    alignItems: 'center',
     flexDirection: 'row',
-    marginTop: '5%',
-    paddingLeft: '2%',
-    paddingRight: '2%',
-    marginBottom: '2%',
+    marginTop: 10,
+    width: AppSizes.screen.width,
   },
   nav2: {
-    width: '100%',
-    marginBottom: '5%',
+    marginTop: 10,
+    flex: 1,
+    width: AppSizes.screen.width,
   },
   nav3: {
-    width: '46%',
-    marginBottom: '2%',
+    width: AppSizes.screen.width / 2.25,
+    height: AppSizes.screen.height / 5,
     borderWidth: 1,
-    marginLeft: '2%',
-    marginRight: '2%',
+    margin: 1,
     backgroundColor: 'red',
   },
   searchBar: {
     position: 'absolute',
-    left: 15,
-    top: 15,
+    left: '5%',
+    top: '25%',
+  },
+  close: {
+    position: 'absolute',
+    right: '15%',
+    top: '25%',
+    backgroundColor: 'rgba(52, 52, 52, 0.1)',
+    borderRadius: 10,
   },
   image: {
-    width: (AppSizes.screen.width * 41.05) / 100,
-    height: (AppSizes.screen.width / 100) * 40,
+    width: '100%',
+    height: '70%',
   },
   filter: {
     flexDirection: 'row',
-    height: 45,
-    width: '100%',
+    height: '8%',
+    width: AppSizes.screen.width,
     backgroundColor: AppColors.vividPink,
   },
   navFilter: {
-    padding: 10,
     flexDirection: 'row',
     height: '100%',
-    width: 96,
+    width: AppSizes.screen.width / 4,
     alignItems: 'center',
+    justifyContent: 'center',
   },
   iconFilter: {
-    position: 'absolute',
-    top: '50%',
-    right: 1,
+    marginLeft: '5%',
   },
   divider: {
     width: 1,
     height: 30,
     backgroundColor: 'white',
-    top: 6,
-    marginLeft: 5,
+    top: '2%',
+    marginLeft: 0,
   },
 });
-
-
-
-
