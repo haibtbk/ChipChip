@@ -26,6 +26,7 @@ import Localization from '@localization';
 import {FilterType} from '@constant';
 import _ from 'lodash';
 
+
 const HomeScreen = (props) => {
   const [products, setProducts] = useState([]);
   const [searchKey, setSearchKey] = useState('');
@@ -112,7 +113,7 @@ const HomeScreen = (props) => {
 
   return (
     <ImageBackground
-      source={require('@images/background/backgroundSale.jpg')}
+      source={require('@images/background/backGround3.jpg')}
       style={styles.imageBackground}>
       <View style={styles.filter}>
         <TouchableOpacity
@@ -218,7 +219,7 @@ const HomeScreen = (props) => {
         <View style={styles.nav1}>
           <TextInput
             type="text"
-            placeholder="Nhập sản phẩm bạn muốn tìm"
+            placeholder={Localization.t('enter_the_product')}
             placeholderTextColor="#6d6dab"
             style={styles.textInput}
             value={searchKey}
@@ -265,10 +266,10 @@ const HomeScreen = (props) => {
                   <Image
                     style={styles.image}
                     source={{uri: item.avatar}}></Image>
-                  <Text style={{textAlign: 'center', color: 'yellow'}}>
+                  <Text style={{textAlign: 'center', color: 'black'}}>
                     {item.name}
                   </Text>
-                  <Text style={{textAlign: 'center', color: 'yellow'}}>
+                  <Text style={{textAlign: 'center', color: 'black'}}>
                     Giá Tiền: {item.price} $
                   </Text>
                 </TouchableOpacity>
@@ -317,8 +318,8 @@ const styles = StyleSheet.create({
     width: AppSizes.screen.width / 2.25,
     height: AppSizes.screen.height / 5,
     borderWidth: 1,
-    margin: 1,
-    backgroundColor: 'red',
+    margin: 3,
+    backgroundColor: 'white',
   },
   searchBar: {
     position: 'absolute',

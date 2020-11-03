@@ -67,7 +67,7 @@ const SalesScreen = (props) => {
         <View style={styles.nav1}>
           <TextInput
             type="text"
-            placeholder="Nhập sản phẩm bạn muốn tìm"
+            placeholder={Localization.t('enter_the_product')}
             placeholderTextColor="#6d6dab"
             style={styles.textInput}
             value={searchKey}

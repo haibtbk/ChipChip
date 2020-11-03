@@ -50,6 +50,7 @@ const appStylesBase = {
         width: 50,
         height: 50,
         justifyContent: 'center',
+        alignItems: 'center',
         shadowColor: Colors.fabButton,
         shadowOffset: { width: 3, height: 3 },
         shadowOpacity: 0.2,

@@ -8,6 +8,7 @@ import FilterScreen from './FilterScreen';
 import ProfileScreen from './component/ProfileScreen';
 import DialogScreen from './component/DialogScreen';
 import ProductDetailScreen from './ProductDetailScreen';
+import CartScreen from './CartScreen';
 export {
   LoginScreen,
   SignUpScreen,
@@ -18,5 +19,6 @@ export {
   ProfileScreen,
   DialogScreen,
   FilterScreen,
-  ProductDetailScreen
+  ProductDetailScreen,
+  CartScreen
 };

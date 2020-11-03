@@ -1,6 +1,6 @@
 import React, {Component, createRef, useRef} from 'react';
 import {Button} from 'native-base';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import Icon from 'react-native-vector-icons/AntDesign';
 import {AppStyles, AppSizes, AppColors} from '@theme';
 import _ from 'lodash';
 import * as Animatable from 'react-native-animatable';
@@ -12,28 +12,6 @@ const FabButton = React.forwardRef((props, ref) => {
   const [visible, setVisible] = React.useState(false);
   const [showLightbox, setShowLightbox] = React.useState(false);
   const rotatingView = useRef();
-
-  const shouldShowLightbox = (visibleLightbox) => {
-    setShowLightbox(visibleLightbox);
-    rotatingView.current.transition(
-      {rotate: visibleLightbox ? '0deg' : '45deg'},
-      {rotate: visibleLightbox ? '45deg' : '0deg'},
-    );
-    const {navigationRef} = props;
-    const navigation = navigationRef.current;
-    const currentScene = navigation.getCurrentRoute().name;
-    if (currentScene == 'fab') {
-      navigation.goBack();
-    } else {
-      navigation.navigate('fab', {
-        close: !visibleLightbox,
-        currentScene: currentScene,
-      });
-    }
-  };
-
-
-
   
   const reset = () => {
     setShowLightbox(false);
@@ -50,6 +28,11 @@ const FabButton = React.forwardRef((props, ref) => {
     show,
     hide,
   }));
+  const goToCartScreen = () => {
+    const {navigationRef} = props;
+    const navigation = navigationRef.current;
+    navigation.navigate('Cart');
+  }
 
   return (
     <View ref={ref}>
@@ -62,14 +45,14 @@ const FabButton = React.forwardRef((props, ref) => {
             AppStyles.fabButton,
             {
               backgroundColor: showLightbox
-                ? AppColors.gray
-                : AppColors.fabButton,
+                ? AppColors.vividPink
+                : AppColors.vividPink,
             },
           ]}
-          onPress={() => shouldShowLightbox(!showLightbox)}>
-          <Animatable.View duration={500} ref={rotatingView}>
+          onPress={() => goToCartScreen()}>
+          <Animatable.View duration={0} ref={rotatingView}>
             <Icon
-              name="add"
+              name="shoppingcart"
               style={[
                 AppStyles.fabIcon,
                 {
@@ -86,3 +69,4 @@ const FabButton = React.forwardRef((props, ref) => {
 
 // export default FabButton
 export default FabButton;
+

@@ -41,6 +41,7 @@ const ProductDetailScreen = (props) => {
   const {item} = route.params;
   const [quantity, setQuantity] = useState(1);
 
+
   const _handleChangeText = (text) => {
     const quantityNumber = parseInt(text);
     if (quantityNumber > 1 && quantityNumber <= 9999999) {
@@ -95,7 +96,7 @@ const ProductDetailScreen = (props) => {
               style={styles.iconHeart}
               name="heart"
               size={30}
-              color={isChecked ? AppColors.red : AppColors.inputBg}
+              color={isChecked ? AppColors.vividPink : AppColors.inputBg}
             />
           </View>
           <View style={styles.nav1}>
@@ -127,9 +128,10 @@ const ProductDetailScreen = (props) => {
             <View style={styles.navRate1}>
               <Text>Đánh giá: </Text>
               <Rating
+                type="custom"
                 imageSize={20}
                 onFinishRating={ratingCompleted}
-                style={{paddingVertical: 0}}
+                style={styles.rating}
               />
             </View>
             <Text style={styles.title}>{item.name}</Text>
@@ -137,12 +139,12 @@ const ProductDetailScreen = (props) => {
             <Text style={styles.text1}>Tồn kho: {item.amount} </Text>
             <Text style={styles.text1}>Ngày hết hạn : {item.expiry_date}</Text>
             <View style={styles.__}></View>
-            <View
-              style={styles.nav4}>
+            <View style={styles.nav4}>
               <View style={styles.nav2}>
                 <Text style={styles.text2}>Số Lượng : </Text>
                 <View style={styles.nav3}>
                   <ButtonIconComponent
+                    style={{padding: AppSizes.marginXMedium}}
                     name="chevron-left"
                     size={20}
                     action={actionMinus}
@@ -155,6 +157,7 @@ const ProductDetailScreen = (props) => {
                     onChangeText={_handleChangeText}
                   />
                   <ButtonIconComponent
+                    style={{padding: AppSizes.marginXMedium}}
                     name="chevron-right"
                     size={20}
                     action={actionAdd}
@@ -170,14 +173,14 @@ const ProductDetailScreen = (props) => {
               </View>
             </View>
             <View style={styles.__}></View>
-            <Text style={styles.title}>Thông Tin Giới Thiệu :</Text>
+            <Text style={styles.title}>Thông tin sản phẩm :</Text>
             <Text style={styles.text1}>{item.description}</Text>
           </View>
         </ScrollView>
       </View>
       <View style={styles.button}>
         <ButtonTextComponent
-          title="MUA NGAY"
+          title="Thanh toán"
           containerStyle={styles.buttonBuy}
           textStyle={{fontSize: 25}}></ButtonTextComponent>
       </View>
@@ -187,6 +190,7 @@ const ProductDetailScreen = (props) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: 'white',
   },
   nav1: {
     padding: AppSizes.paddingXSmall,
@@ -282,6 +286,9 @@ const styles = StyleSheet.create({
     backgroundColor: 'black',
     marginLeft: 20,
     marginRight: 20,
+  },
+  rating: {
+    backgroundColor: 'transparent',
   },
 });
 

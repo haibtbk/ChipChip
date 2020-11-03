@@ -43,7 +43,7 @@ const SettingsScreen = (props) => {
           name="account-circle"
           source="MaterialIcons"
           size={50}
-          color={AppColors.fabButton}></ButtonIconComponent>
+          color={AppColors.vividPink}></ButtonIconComponent>
         <View style={{flexDirection: 'column', marginLeft: 10}}>
           <Text style={{fontSize: AppSizes.fontBase}}>
             Chào mừng bạn đến với ChipChip
@@ -52,7 +52,7 @@ const SettingsScreen = (props) => {
             <TouchableOpacity onPress={() => navigation.navigate('Login')}>
               <Text
                 style={{
-                  color: AppColors.fabButton,
+                  color: AppColors.vividPink,
                   fontSize: AppSizes.fontMedium,
                 }}>
                 Đăng nhập/
@@ -62,7 +62,7 @@ const SettingsScreen = (props) => {
             <TouchableOpacity onPress={() => navigation.navigate('SignUp')}>
               <Text
                 style={{
-                  color: AppColors.fabButton,
+                  color: AppColors.vividPink,
                   fontSize: AppSizes.fontMedium,
                 }}>
                 Đăng kí

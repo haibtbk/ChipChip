@@ -8,5 +8,10 @@
     "price": "Giá tiền",
     "expiryDate": " Hạn dùng",
     "provider": "Nhà cung cấp",
-    "apply": "Xác nhận"
+    "apply": "Xác nhận",
+    "enter_the_product": "Nhập sản phẩm",
+    "expiry": "Hàng cận date",
+    "discout": "Hàng giảm giá",
+    "notifications": "Thông báo",
+    "account": "Tài Khoản"
 }

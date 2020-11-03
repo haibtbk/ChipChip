@@ -1,5 +1,5 @@
 import React from 'react';
-import {TouchableOpacity, View, Image} from 'react-native';
+import {TouchableOpacity} from 'react-native';
 import Entypo from 'react-native-vector-icons/Entypo';
 import Feather from 'react-native-vector-icons/Feather';
 import AntDesign from 'react-native-vector-icons/AntDesign';

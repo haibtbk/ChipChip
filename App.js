@@ -20,7 +20,8 @@ import {
   DialogScreen,
   SignUpScreen,
   FilterScreen,
-  ProductDetailScreen
+  ProductDetailScreen,
+  CartScreen
 } from '@container';
 import * as RNLocalize from 'react-native-localize';
 import Localization from '@localization';
@@ -57,7 +58,7 @@ function RootTabs() {
         activeTintColor: AppColors.vividPink,
       }}>
       <Tab.Screen
-        name="Hàng cận date"
+        name={Localization.t('expiry')}
         options={{
           tabBarLabel: 'Hàng cận date',
           tabBarIcon: () => (
@@ -70,7 +71,7 @@ function RootTabs() {
         {() => (
           <HomeStack.Navigator>
             <HomeStack.Screen
-              name="Hang can date"
+              name={Localization.t('expiry')}
               component={HomeScreen}
               options={{headerShown: false}}
             />
@@ -80,10 +81,10 @@ function RootTabs() {
       </Tab.Screen>
 
       <Tab.Screen
-        name="Hàng giảm giá "
+        name={Localization.t('discout')}
         component={SalesScreen}
         options={{
-          tabBarLabel: 'Hàng Giảm Giá',
+          tabBarLabel: Localization.t('discout'),
           tabBarIcon: ({color}) => (
             <Foundation name="burst-sale" size={40} color={color}></Foundation>
           ),
@@ -93,7 +94,7 @@ function RootTabs() {
         name="Notifications"
         component={NotificationsScreen}
         options={{
-          tabBarLabel: 'Thông báo',
+          tabBarLabel: Localization.t('notifications'),
           tabBarIcon: ({color, size}) => (
             <EntypoIcon name="bell" color={color} size={size} />
           ),
@@ -102,7 +103,7 @@ function RootTabs() {
       <Tab.Screen
         name="Setting"
         options={{
-          tabBarLabel: 'Account',
+          tabBarLabel: Localization.t('account'),
           tabBarIcon: ({color, size}) => (
             <MaterialIcons
               name="account-box"
@@ -187,6 +188,7 @@ export default App = (props) => {
         <RootStack.Navigator headerMode="none">
           <RootStack.Screen name="Main">{() => RootTabs()}</RootStack.Screen>
           <Stack.Screen name="Filter" component={FilterScreen} />
+          <Stack.Screen name="Cart" component={CartScreen} />         
           <SettingsStack.Screen name="Login" component={LoginScreen} />
           <SettingsStack.Screen name="SignUp" component={SignUpScreen} />
           <Stack.Screen name="ProductDetail" component={ProductDetailScreen}></Stack.Screen>
@@ -220,7 +222,7 @@ export default App = (props) => {
           />
         </RootStack.Navigator>
 
-        <FabButton ref={fabRef} navigationRef={navigationRef} />
+        <FabButton  ref={fabRef} navigationRef={navigationRef} /> 
       </View>
     </NavigationContainer>
   );
