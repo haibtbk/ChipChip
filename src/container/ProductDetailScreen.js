@@ -167,9 +167,9 @@ const ProductDetailScreen = (props) => {
               <View style={styles.price}>
                 <Text
                   style={{textDecorationLine: 'line-through', color: 'black'}}>
-                  {item.price} $
+                  {quantity * item.price} $
                 </Text>
-                <Text style={{color: 'red'}}>{(item.price * 80) / 100} $</Text>
+                <Text style={{color: 'red'}}>{quantity * (item.price * 80) / 100} $</Text>
               </View>
             </View>
             <View style={styles.__}></View>
