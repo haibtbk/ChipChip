@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {View, Text, ScrollView, StyleSheet} from 'react-native';
 import FabManager from '@fab/FabManager';
 import {useFocusEffect} from '@react-navigation/native';
-import {ButtonIconComponent} from '@component';
+import {ButtonIconComponent, InputTextComponent, Divider} from '@component';
 import {AppSizes, AppColors} from '@theme';
 import {createStackNavigator} from '@react-navigation/stack';
 import {NavigationContainer} from '@react-navigation/native';
@@ -38,7 +38,7 @@ const NotificationsScreen = () => {
 
   useEffect(() => {
     getNotificationList();
-  },[]);
+  }, []);
 
   return (
     <View style={styles.container}>
@@ -47,14 +47,14 @@ const NotificationsScreen = () => {
       </View>
       <FlatList
         data={notifications}
+        ItemSeparatorComponent={Divider}
         keyExtractor={(item) => item.id}
         renderItem={({item, index}) => {
           return (
-            <View style={styles.nav2}>
-              <Text style={{color: 'black'}}>
-               {index}. {item.name}
-              </Text>
-            </View>
+            // <TouchableOpacity style={styles.nav2}>
+            //   <Text style={{color: 'black', fontSize: 16}}>{item.name}</Text>
+            // </TouchableOpacity>
+            <InputTextComponent text={item.name} />
           );
         }}></FlatList>
     </View>
@@ -79,12 +79,12 @@ const styles = StyleSheet.create({
   },
   nav2: {
     justifyContent: 'center',
-    padding: 10,
+    padding: 30,
     width: '100%',
     height: 30,
-    borderWidth: 0.5,
+    borderBottomWidth: 0.5,
     borderColor: 'black',
-  }
+  },
 });
 
 export default NotificationsScreen;
