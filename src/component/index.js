@@ -4,6 +4,8 @@ import ButtonIconComponent from './ButtonIconComponent';
 import NavBar from './NavBar';
 import ButtonTextComponent from './ButtonTextComponent';
 import ButtonIconTextComponent from './ButtonIconTextComponent';
+import InputTextComponent from './InputTextComponent';
+import Divider from './Divider';
 export {
   ButtonComponent,
   CheckBoxComponent,
@@ -11,4 +13,6 @@ export {
   NavBar,
   ButtonTextComponent,
   ButtonIconTextComponent,
+  InputTextComponent,
+  Divider,
 };
